@@ -1,5 +1,5 @@
 #pragma once
-#ifndef Miasta_h
+#ifndef Miasto_h
 #define Miasto_h
 
 #include "MenedzerZasobow.h"
