@@ -1,5 +1,5 @@
-#ifndef ZASOBY_H
-#define ZASOBY_H
+#ifndef Zasoby_h
+#define Zasoby_h
 
 enum class TypZasobu {
     FOOD,
