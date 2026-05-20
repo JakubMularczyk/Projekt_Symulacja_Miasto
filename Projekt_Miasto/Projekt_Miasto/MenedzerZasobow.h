@@ -1,4 +1,4 @@
-#pragma once
+
 #ifndef MenedzerZasobow_h
 #define MenedzerZasobow_h
 
@@ -10,34 +10,15 @@ private:
     std::map<TypZasobu, int> zasoby;
 
 public:
-    MenedzerZasobow() {
-        zasoby[TypZasobu::FOOD] = 0;
-        zasoby[TypZasobu::GOLD] = 0;
-        zasoby[TypZasobu::WOOD] = 0;
-        zasoby[TypZasobu::STONE] = 0;
-    }
+    MenedzerZasobow();
 
-    void dodajZasob(TypZasobu typ, int ilosc) {
-        if (ilosc > 0) {
-            zasoby[typ] += ilosc;
-        }
-    }
+    void dodajZasob(TypZasobu typ, int ilosc);
 
-    bool zuzyjZasob(TypZasobu typ, int ilosc) {
-        if (ilosc > 0 && zasoby[typ] >= ilosc) {
-            zasoby[typ] -= ilosc;
-            return true; 
-        }
-        return false; 
-    }
+    bool zuzyjZasob(TypZasobu typ, int ilosc);
 
-    int pobierzIloscZasobu(TypZasobu typ) const {
-        return zasoby.at(typ); 
-    }
+    int pobierzIloscZasobu(TypZasobu typ) const;
 };
 
 #endif
-class MenedzerZasobow
-{
-};
+
 
