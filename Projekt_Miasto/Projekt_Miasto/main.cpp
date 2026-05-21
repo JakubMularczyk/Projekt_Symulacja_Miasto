@@ -1,8 +1,9 @@
-﻿
-
+#include "MenedzerZasobow.h"
 #include <iostream>
+#include "engine/Silnik.h"
 
-int main()
-{
-    std::cout << "Hello World!\n";
+int main() {
+    Silnik silnikSymulacji;
+    silnikSymulacji.uruchom();
+    return 0;
 }
