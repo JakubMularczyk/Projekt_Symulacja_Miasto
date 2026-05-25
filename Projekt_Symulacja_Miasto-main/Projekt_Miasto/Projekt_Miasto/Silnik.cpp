@@ -1,16 +1,19 @@
 #include "Silnik.h"
 #include <iostream>
 #include "Miasto.h"
+#include "Rolnik.h"
+#include <memory>
 // walczyłem godzine zeby zznalezc ze czydzialasymulacja miała polski znak...
 Silnik::Silnik() : aktualnaTura(0), czyDzialaSymulacja(false) {
-    miasto.getMenedzerZasobow().dodajZasob(TypZasobu::FOOD, 20);
-    miasto.getMenedzerZasobow().dodajZasob(TypZasobu::GOLD, 15);
-    miasto.getMenedzerZasobow().dodajZasob(TypZasobu::WOOD, 10);
-    miasto.getMenedzerZasobow().dodajZasob(TypZasobu::STONE, 5);
+    miasto.getMenedzerZasobow().dodajZasob(TypZasobu::FOOD, 100);
+    miasto.getMenedzerZasobow().dodajZasob(TypZasobu::GOLD, 100);
+    miasto.getMenedzerZasobow().dodajZasob(TypZasobu::WOOD, 100);
+    miasto.getMenedzerZasobow().dodajZasob(TypZasobu::STONE, 50);
+    miasto.dodajMieszkanca(std::make_unique<Rolnik>(40, 30, 100, &miasto.getMenedzerZasobow(), 10));
+    miasto.dodajMieszkanca(std::make_unique<Rolnik>(40, 30, 100, &miasto.getMenedzerZasobow(), 10));
+    miasto.dodajMieszkanca(std::make_unique<Rolnik>(40, 30, 100, &miasto.getMenedzerZasobow(), 10));
 }
-void Silnik::nazwaMiasta() {
 
-}
 
 
 void Silnik::uruchom() {
@@ -25,8 +28,13 @@ void Silnik::uruchom() {
 void Silnik::pokazMenu() {
     std::cout << "\n[1] Nastepna tura | [2] Zakoncz symulacje\nWybor: ";
     int wybor;
-    std::cin >> wybor;
 
+    if (!(std::cin >> wybor)) {
+        std::cin.clear();
+        std::cin.ignore(10000, '\n');
+        std::cout << "Podaj liczbe!" << std::endl;
+        return;
+    }
     if (wybor == 1) {
         wykonajTure();
     } else if (wybor == 2) {
@@ -40,9 +48,11 @@ void Silnik::pokazMenu() {
 void Silnik::wykonajTure() {
     aktualnaTura++;
     std::cout << "\n--- ROZPOCZECIE TURY " << aktualnaTura << " ---" << std::endl;
-
+    miasto.wykonajAkcjeMieszkancow();
     miasto.getMenedzerZasobow().zuzyjZasob(TypZasobu::FOOD, 10);
     miasto.getMenedzerZasobow().zuzyjZasob(TypZasobu::GOLD, 5);
+    miasto.aktualizujTurydoUpadku();
+
 
     if (miasto.sprawdzWarunkiUpadku()) {
         wyswietlRaport();

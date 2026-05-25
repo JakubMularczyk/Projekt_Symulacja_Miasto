@@ -1,6 +1,5 @@
     #pragma once
-    #ifndef SILNIK_H
-    #define SILNIK_H
+    
 
     #include "Miasto.h"
 
@@ -11,7 +10,7 @@
         bool czyDzialaSymulacja;
 
 
-        void nazwaMiasta();
+        
         void wykonajTure();
         void wyswietlRaport() const;
         void pokazMenu();
@@ -21,4 +20,4 @@
         void uruchom();
     };
 
-    #endif
+    

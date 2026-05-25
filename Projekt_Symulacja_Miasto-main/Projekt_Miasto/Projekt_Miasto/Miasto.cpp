@@ -1,5 +1,5 @@
 #include "Miasto.h"
-
+#include <utility>
 
 Miasto::Miasto() :
     bezpieczenstwo(10),
@@ -7,7 +7,7 @@ Miasto::Miasto() :
     turyBezZlota(0),
     turyBezBezpieczenstwa(0) {
 }
-
+// Zasoby:
 MenedzerZasobow& Miasto::getMenedzerZasobow() {
     return menedzerZasobow;
 }
@@ -23,7 +23,7 @@ int Miasto::getBezpieczenstwo() const {
 void Miasto::zmienBezpieczenstwo(int ilosc) {
     bezpieczenstwo += ilosc;
 }
-
+//Upadek:
 void Miasto::aktualizujTurydoUpadku() {
     if (menedzerZasobow.pobierzIloscZasobu(TypZasobu::FOOD) <= 0) {
         turyBezJedzenia++;
@@ -52,4 +52,18 @@ bool Miasto::sprawdzWarunkiUpadku() {
         return true;
     }
     return false;
+}
+
+//Mieszkancy:
+void Miasto::dodajMieszkanca(std::unique_ptr<Mieszkaniec> mieszkaniec)
+{
+    mieszkancy.push_back(std::move(mieszkaniec));
+}
+void Miasto::wykonajAkcjeMieszkancow()
+{
+    for (auto& mieszkaniec : mieszkancy)
+    {
+        mieszkaniec->pracuj();
+        mieszkaniec->zuzyj();
+    }
 }

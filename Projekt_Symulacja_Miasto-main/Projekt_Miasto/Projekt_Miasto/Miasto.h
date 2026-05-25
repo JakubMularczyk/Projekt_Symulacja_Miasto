@@ -1,6 +1,8 @@
 #pragma once
-#ifndef MIASTO_H
-#define MIASTO_H
+#include <vector>
+#include <memory>
+#include "Mieszkaniec.h"
+
 
 #include "MenedzerZasobow.h"
 
@@ -11,6 +13,7 @@ private:
     int turyBezJedzenia;
     int turyBezZlota;
     int turyBezBezpieczenstwa;
+    std::vector<std::unique_ptr<Mieszkaniec>> mieszkancy;
 
 public:
     // 
@@ -20,6 +23,9 @@ public:
     MenedzerZasobow& getMenedzerZasobow();
     const MenedzerZasobow& getMenedzerZasobow() const;
     int getBezpieczenstwo() const;
+    //
+    void dodajMieszkanca(std::unique_ptr<Mieszkaniec> mieszkaniec);
+    void wykonajAkcjeMieszkancow();
 
     // 
     void zmienBezpieczenstwo(int ilosc);
@@ -27,4 +33,3 @@ public:
     bool sprawdzWarunkiUpadku();
 };
 
-#endif
