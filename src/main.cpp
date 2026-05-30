@@ -1,9 +1,8 @@
-#include "MenedzerZasobow.h"
 #include <iostream>
-#include "Silnik.h"
+#include "Engine.h"
 
 int main() {
-    Silnik silnikSymulacji;
-    silnikSymulacji.uruchom();
+    Engine simulationEngine;
+    simulationEngine.run();
     return 0;
 }
