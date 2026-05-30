@@ -1,6 +1,6 @@
 #include "MenedzerZasobow.h"
 #include <iostream>
-#include "engine/Silnik.h"
+#include "Silnik.h"
 
 int main() {
     Silnik silnikSymulacji;

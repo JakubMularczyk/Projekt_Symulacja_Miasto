@@ -67,3 +67,13 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+# ==========================================
+# Visual Studio - pliki tymczasowe i lokalne
+# ==========================================
+.vs/
+[Vv]alue[Aa]dd/
+_Chroot/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
