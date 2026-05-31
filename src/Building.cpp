@@ -1,8 +1,8 @@
 #include "Building.h"
 #include <iostream>
 
-Building::Building(std::string name, int maxDurability)
-    : name(name), maxDurability(maxDurability), durability(0), isConstructed(false) {
+Building::Building(int maxDurability)
+    : maxDurability(maxDurability), durability(0), isConstructed(false) {
 }
 
 bool Building::build(ResourceManager* resourceManager) {
@@ -12,7 +12,7 @@ bool Building::build(ResourceManager* resourceManager) {
 
     for (const auto& cost : constructionCost) {
         if (resourceManager->getResourceAmount(cost.first) < cost.second) {
-            std::cout << "Brakuje surowcow do budowy: " << name << std::endl;
+            std::cout << "Brakuje surowcow do budowy: " << getName() << std::endl;
             return false;
         }
     }
@@ -23,7 +23,7 @@ bool Building::build(ResourceManager* resourceManager) {
 
     durability = maxDurability;
     isConstructed = true;
-    std::cout << "Zbudowano: " << name << std::endl;
+    std::cout << "Zbudowano: " << getName() << std::endl;
     return true;
 }
 
@@ -33,13 +33,9 @@ void Building::takeDamage(int amount) {
         if (durability <= 0) {
             durability = 0;
             isConstructed = false;
-            std::cout << name << " zostal zniszczony!" << std::endl;
+            std::cout << getName() << " zostal zniszczony!" << std::endl;
         }
     }
-}
-
-std::string Building::getName() const {
-    return name;
 }
 
 int Building::getDurability() const {
