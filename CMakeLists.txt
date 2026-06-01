@@ -24,6 +24,10 @@ add_executable(SymulacjaMiasto
     src/ResourceManager.h
     src/ResourceManager.cpp
     src/Resources.h
+    src/Woodcutter.h
+    src/Woodcutter.cpp
+    src/Stonecutter.cpp
+    src/Stonecutter.h
 )
     
 
