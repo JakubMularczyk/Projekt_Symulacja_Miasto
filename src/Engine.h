@@ -1,6 +1,7 @@
 #pragma once
 
 #include "City.h"
+#include <string>
 
 class Engine {
 private:
