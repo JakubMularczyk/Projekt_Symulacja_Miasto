@@ -8,7 +8,6 @@ City::City() :
     turnsWithoutSafety(0) {
 }
 
-// Resources:
 ResourceManager& City::getResourceManager() {
     return resourceManager;
 }
@@ -25,7 +24,6 @@ void City::changeSafety(int amount) {
     safety += amount;
 }
 
-// Collapse:
 void City::updateTurnsToCollapse() {
     if (resourceManager.getResourceAmount(ResourceType::FOOD) <= 0) {
         turnsWithoutFood++;
@@ -56,7 +54,6 @@ bool City::checkCollapseConditions() {
     return false;
 }
 
-// Citizens:
 void City::addCitizen(std::unique_ptr<Citizen> citizen) {
     citizens.push_back(std::move(citizen));
 }
@@ -66,4 +63,8 @@ void City::executeCitizenActions() {
         citizen->work();
         citizen->consume();
     }
+}
+
+void City::addBuilding(std::unique_ptr<Building> building) {
+    buildings.push_back(std::move(building));
 }
