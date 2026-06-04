@@ -4,26 +4,74 @@
 #include "Farmer.h"
 #include "Merchant.h"
 #include "Guard.h"
-#include "Woodcutter.h"
-#include "Stonecutter.h"
 #include <memory>
+#include <fstream>  
+#include <sstream>  
+
+std::string Engine::trim(const std::string& str) {
+    size_t first = str.find_first_not_of(" \t\r\n");
+    if (first == std::string::npos) return "";
+    size_t last = str.find_last_not_of(" \t\r\n");
+    return str.substr(first, (last - first + 1));
+}
+
+bool Engine::loadConfig(const std::string& filePath) {
+    std::ifstream file(filePath);
+    if (!file.is_open()) {
+        std::cerr << "Warning: Could not open " << filePath << ". Loading default setup." << std::endl;
+        return false;
+    }
+
+    std::string line;
+    while (std::getline(file, line)) {
+        if (line.empty() || line[0] == '#') continue;
+
+        std::stringstream ss(line);
+        std::string key;
+        std::string valueStr;
+
+        if (std::getline(ss, key, '=') && std::getline(ss, valueStr)) {
+            key = trim(key);
+            valueStr = trim(valueStr);
+
+            try {
+                int value = std::stoi(valueStr);
+
+                if (key == "FOOD") {
+                    city.getResourceManager().addResource(ResourceType::FOOD, value);
+                } else if (key == "GOLD") {
+                    city.getResourceManager().addResource(ResourceType::GOLD, value);
+                } else if (key == "WOOD") {
+                    city.getResourceManager().addResource(ResourceType::WOOD, value);
+                } else if (key == "STONE") {
+                    city.getResourceManager().addResource(ResourceType::STONE, value);
+                } else if (key == "SAFETY") {
+                    int currentSafety = city.getSafety();
+                    city.changeSafety(value - currentSafety); 
+                }
+            } catch (const std::exception& e) {
+                std::cerr << "Error parsing value for key: " << key << " (" << valueStr << ")" << std::endl;
+            }
+        }
+    }
+    file.close();
+    return true;
+}
 
 Engine::Engine() : currentTurn(0), isSimulationRunning(false) {
-    // Setting up resources
-    city.getResourceManager().addResource(ResourceType::FOOD, 6);
-    city.getResourceManager().addResource(ResourceType::GOLD, 10);
-    city.getResourceManager().addResource(ResourceType::WOOD, 100);
-    city.getResourceManager().addResource(ResourceType::STONE, 50);
+    if (!loadConfig("config.txt")) {
+        city.getResourceManager().addResource(ResourceType::FOOD, 6);
+        city.getResourceManager().addResource(ResourceType::GOLD, 10);
+        city.getResourceManager().addResource(ResourceType::WOOD, 100);
+        city.getResourceManager().addResource(ResourceType::STONE, 50);
+    }
 
-    // Adding citizens
-    city.addCitizen(std::make_unique<Farmer>(40, 30, 100, &city.getResourceManager(), 15, 2));
+    city.addCitizen(std::make_unique<Farmer>(40, 30, 100, &city.getResourceManager(), 10, 2));
     city.addCitizen(std::make_unique<Farmer>(40, 30, 100, &city.getResourceManager(), 10));
     city.addCitizen(std::make_unique<Farmer>(40, 30, 100, &city.getResourceManager(), 10));
     city.addCitizen(std::make_unique<Merchant>(40, 30, 100, &city.getResourceManager(), 2));
     city.addCitizen(std::make_unique<Merchant>(40, 30, 100, &city.getResourceManager(), 6));
     city.addCitizen(std::make_unique<Guard>(40, 30, 100, &city, &city.getResourceManager(), 10, 1));
-    city.addCitizen(std::make_unique<Woodcutter>(40, 30, 100, &city.getResourceManager(), 10));
-    city.addCitizen(std::make_unique<Stonecutter>(40, 30, 100, &city.getResourceManager(), 10));
 }
 
 void Engine::run() {
