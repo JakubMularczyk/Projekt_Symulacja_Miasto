@@ -4,6 +4,8 @@
 #include "Farmer.h"
 #include "Merchant.h"
 #include "Guard.h"
+#include "Woodcutter.h"
+#include "Stonecutter.h"
 #include <memory>
 #include <fstream>  
 #include <sstream>  
@@ -60,7 +62,7 @@ bool Engine::loadConfig(const std::string& filePath) {
 
 Engine::Engine() : currentTurn(0), isSimulationRunning(false) {
     if (!loadConfig("config.txt")) {
-        city.getResourceManager().addResource(ResourceType::FOOD, 6);
+        city.getResourceManager().addResource(ResourceType::FOOD, 60);
         city.getResourceManager().addResource(ResourceType::GOLD, 10);
         city.getResourceManager().addResource(ResourceType::WOOD, 100);
         city.getResourceManager().addResource(ResourceType::STONE, 50);
@@ -72,12 +74,15 @@ Engine::Engine() : currentTurn(0), isSimulationRunning(false) {
     city.addCitizen(std::make_unique<Merchant>(40, 30, 100, &city.getResourceManager(), 2));
     city.addCitizen(std::make_unique<Merchant>(40, 30, 100, &city.getResourceManager(), 6));
     city.addCitizen(std::make_unique<Guard>(40, 30, 100, &city, &city.getResourceManager(), 10, 1));
+    city.addCitizen(std::make_unique<Woodcutter>(40, 30, 100, &city.getResourceManager(), 10));
+    city.addCitizen(std::make_unique<Stonecutter>(40, 30, 100, &city.getResourceManager(), 10));
+
 }
 
 void Engine::run() {
     isSimulationRunning = true;
     std::cout << "--- WELCOME TO THE MEDIEVAL CITY SIMULATION ---" << std::endl;
-
+    //loadConfig;
     while (isSimulationRunning) {
         showMenu();
     }

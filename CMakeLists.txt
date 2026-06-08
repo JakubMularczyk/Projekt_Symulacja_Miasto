@@ -28,7 +28,7 @@ add_executable(SymulacjaMiasto
     src/Woodcutter.cpp
     src/Stonecutter.cpp
     src/Stonecutter.h
- "src/RandomEvent.h" "src/RandomEvent.cpp")
+ "src/RandomEvent.h" "src/RandomEvent.cpp" "src/FireEvent.h" "src/FireEvent.cpp")
     
 
 
