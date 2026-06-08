@@ -1,6 +1,7 @@
 #pragma once
 
 #include "City.h"
+#include <string>
 
 class Engine {
 private:
@@ -11,6 +12,9 @@ private:
     void executeTurn();
     void displayReport() const;
     void showMenu();
+
+    std::string trim(const std::string& str);
+    bool loadConfig(const std::string& filePath);
 
 public:
     Engine();
