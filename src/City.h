@@ -4,6 +4,7 @@
 #include <memory>
 #include "Citizen.h"
 #include "ResourceManager.h"
+#include "Building.h" 
 
 class City {
 private:
@@ -12,21 +13,22 @@ private:
     int turnsWithoutFood;
     int turnsWithoutGold;
     int turnsWithoutSafety;
+    
     std::vector<std::unique_ptr<Citizen>> citizens;
+    std::vector<std::unique_ptr<Building>> buildings;
 
 public:
     City();
 
-    // Resources and Safety Getters
     ResourceManager& getResourceManager();
     const ResourceManager& getResourceManager() const;
     int getSafety() const;
 
-    // Citizens Management
     void addCitizen(std::unique_ptr<Citizen> citizen);
     void executeCitizenActions();
 
-    // Simulation State Updates
+    void addBuilding(std::unique_ptr<Building> building);
+
     void changeSafety(int amount);
     void updateTurnsToCollapse();
     bool checkCollapseConditions();
