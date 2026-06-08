@@ -8,14 +8,6 @@ City::City() :
     turnsWithoutSafety(0) {
 }
 
-ResourceManager& City::getResourceManager() {
-    return resourceManager;
-}
-
-const ResourceManager& City::getResourceManager() const {
-    return resourceManager;
-}
-
 int City::getSafety() const {
     return safety;
 }
@@ -24,7 +16,7 @@ void City::changeSafety(int amount) {
     safety += amount;
 }
 
-void City::updateTurnsToCollapse() {
+void City::updateTurnsToCollapse(const ResourceManager& resourceManager) {
     if (resourceManager.getResourceAmount(ResourceType::FOOD) <= 0) {
         turnsWithoutFood++;
     }

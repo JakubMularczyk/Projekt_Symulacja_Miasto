@@ -1,12 +1,11 @@
 #include "Engine.h"
 #include <iostream>
-#include "City.h"
 #include "Farmer.h"
 #include "Merchant.h"
 #include "Guard.h"
 #include <memory>
-#include <fstream>  
-#include <sstream>  
+#include <fstream>
+#include <sstream>
 
 std::string Engine::trim(const std::string& str) {
     size_t first = str.find_first_not_of(" \t\r\n");
@@ -38,19 +37,19 @@ bool Engine::loadConfig(const std::string& filePath) {
                 int value = std::stoi(valueStr);
 
                 if (key == "FOOD") {
-                    city.getResourceManager().addResource(ResourceType::FOOD, value);
+                    resourceManager.addResource(ResourceType::FOOD, value);
                 } else if (key == "GOLD") {
-                    city.getResourceManager().addResource(ResourceType::GOLD, value);
+                    resourceManager.addResource(ResourceType::GOLD, value);
                 } else if (key == "WOOD") {
-                    city.getResourceManager().addResource(ResourceType::WOOD, value);
+                    resourceManager.addResource(ResourceType::WOOD, value);
                 } else if (key == "STONE") {
-                    city.getResourceManager().addResource(ResourceType::STONE, value);
+                    resourceManager.addResource(ResourceType::STONE, value);
                 } else if (key == "SAFETY") {
                     int currentSafety = city.getSafety();
                     city.changeSafety(value - currentSafety); 
                 }
             } catch (const std::exception& e) {
-                std::cerr << "Error parsing value for key: " << key << " (" << valueStr << ")" << std::endl;
+                std::cerr << "Error parsing value for key: " << key << std::endl;
             }
         }
     }
@@ -60,18 +59,18 @@ bool Engine::loadConfig(const std::string& filePath) {
 
 Engine::Engine() : currentTurn(0), isSimulationRunning(false) {
     if (!loadConfig("config.txt")) {
-        city.getResourceManager().addResource(ResourceType::FOOD, 6);
-        city.getResourceManager().addResource(ResourceType::GOLD, 10);
-        city.getResourceManager().addResource(ResourceType::WOOD, 100);
-        city.getResourceManager().addResource(ResourceType::STONE, 50);
+        resourceManager.addResource(ResourceType::FOOD, 6);
+        resourceManager.addResource(ResourceType::GOLD, 10);
+        resourceManager.addResource(ResourceType::WOOD, 100);
+        resourceManager.addResource(ResourceType::STONE, 50);
     }
 
-    city.addCitizen(std::make_unique<Farmer>(40, 30, 100, &city.getResourceManager(), 10, 2));
-    city.addCitizen(std::make_unique<Farmer>(40, 30, 100, &city.getResourceManager(), 10));
-    city.addCitizen(std::make_unique<Farmer>(40, 30, 100, &city.getResourceManager(), 10));
-    city.addCitizen(std::make_unique<Merchant>(40, 30, 100, &city.getResourceManager(), 2));
-    city.addCitizen(std::make_unique<Merchant>(40, 30, 100, &city.getResourceManager(), 6));
-    city.addCitizen(std::make_unique<Guard>(40, 30, 100, &city, &city.getResourceManager(), 10, 1));
+    city.addCitizen(std::make_unique<Farmer>(40, 30, 100, &resourceManager, 10, 2));
+    city.addCitizen(std::make_unique<Farmer>(40, 30, 100, &resourceManager, 10));
+    city.addCitizen(std::make_unique<Farmer>(40, 30, 100, &resourceManager, 10));
+    city.addCitizen(std::make_unique<Merchant>(40, 30, 100, &resourceManager, 2));
+    city.addCitizen(std::make_unique<Merchant>(40, 30, 100, &resourceManager, 6));
+    city.addCitizen(std::make_unique<Guard>(40, 30, 100, &city, &resourceManager, 10, 1));
 }
 
 void Engine::run() {
@@ -109,10 +108,13 @@ void Engine::showMenu() {
 void Engine::executeTurn() {
     currentTurn++;
     std::cout << "\n--- START OF TURN " << currentTurn << " ---" << std::endl;
+    
     city.executeCitizenActions();
-    city.getResourceManager().consumeResource(ResourceType::FOOD, 10);
-    city.getResourceManager().consumeResource(ResourceType::GOLD, 5);
-    city.updateTurnsToCollapse();
+    
+    resourceManager.consumeResource(ResourceType::FOOD, 10);
+    resourceManager.consumeResource(ResourceType::GOLD, 5);
+    
+    city.updateTurnsToCollapse(resourceManager);
 
     if (city.checkCollapseConditions()) {
         displayReport();
@@ -129,15 +131,12 @@ void Engine::executeTurn() {
 }
 
 void Engine::displayReport() const {
-    const ResourceManager& rm = city.getResourceManager();
-
     std::cout << "=========================================" << std::endl;
     std::cout << " REPORT FROM TURN: " << currentTurn << std::endl;
-    std::cout << " FOOD: " << rm.getResourceAmount(ResourceType::FOOD)
-        << " | GOLD: " << rm.getResourceAmount(ResourceType::GOLD)
-        << " | WOOD: " << rm.getResourceAmount(ResourceType::WOOD)
-        << " | STONE: " << rm.getResourceAmount(ResourceType::STONE) << std::endl;
+    std::cout << " FOOD: " << resourceManager.getResourceAmount(ResourceType::FOOD)
+        << " | GOLD: " << resourceManager.getResourceAmount(ResourceType::GOLD)
+        << " | WOOD: " << resourceManager.getResourceAmount(ResourceType::WOOD)
+        << " | STONE: " << resourceManager.getResourceAmount(ResourceType::STONE) << std::endl;
     std::cout << " SAFETY: " << city.getSafety() << std::endl;
-    std::cout << " Random Event: " << std::endl;
     std::cout << "=========================================" << std::endl;
 }

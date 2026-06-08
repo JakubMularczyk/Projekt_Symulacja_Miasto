@@ -1,11 +1,13 @@
 #pragma once
 
 #include "City.h"
+#include "ResourceManager.h" 
 #include <string>
 
 class Engine {
 private:
     City city;
+    ResourceManager resourceManager; 
     int currentTurn;
     bool isSimulationRunning;
 
