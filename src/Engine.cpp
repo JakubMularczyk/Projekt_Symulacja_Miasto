@@ -3,6 +3,8 @@
 #include "Farmer.h"
 #include "Merchant.h"
 #include "Guard.h"
+#include "Woodcutter.h"
+#include "Stonecutter.h"
 #include <memory>
 #include <fstream>
 #include <sstream>
@@ -76,7 +78,7 @@ Engine::Engine() : currentTurn(0), isSimulationRunning(false) {
 void Engine::run() {
     isSimulationRunning = true;
     std::cout << "--- WELCOME TO THE MEDIEVAL CITY SIMULATION ---" << std::endl;
-
+    
     while (isSimulationRunning) {
         showMenu();
     }
