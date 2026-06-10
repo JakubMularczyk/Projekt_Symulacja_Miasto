@@ -8,6 +8,7 @@
 #include <memory>
 #include <fstream>
 #include <sstream>
+#include "Logger.h" // nowe!
 
 #define HAPPINESS_LEVEL 40
 #define AGE 30
@@ -86,7 +87,7 @@ Engine::Engine() : currentTurn(0), isSimulationRunning(false) {
         resourceManager.addResource(ResourceType::STONE, 50);
     }
     
-    // zmienilam na DEFINE (z zajec)
+    // Zmienione na DEFINE (z zajec) 
     city.addCitizen(std::make_unique<Farmer>(HAPPINESS_LEVEL, AGE, HEALTH_LEVEL, &resourceManager, FARMER_PRODUCTION, FARMER_CONSUMPTION));
     city.addCitizen(std::make_unique<Farmer>(HAPPINESS_LEVEL, AGE, HEALTH_LEVEL, &resourceManager, FARMER_PRODUCTION, FARMER_CONSUMPTION));
     city.addCitizen(std::make_unique<Farmer>(HAPPINESS_LEVEL, AGE, HEALTH_LEVEL, &resourceManager, FARMER_PRODUCTION, FARMER_CONSUMPTION));
@@ -103,6 +104,7 @@ Engine::Engine() : currentTurn(0), isSimulationRunning(false) {
 }
 
 void Engine::run() {
+    clearLogFile(); // czyszczenie pliku z logami przed tura
     isSimulationRunning = true;
     std::cout << "--- WELCOME TO THE MEDIEVAL CITY SIMULATION ---" << std::endl;
     
@@ -138,15 +140,28 @@ void Engine::executeTurn() {
     currentTurn++;
     std::cout << "\n--- START OF TURN " << currentTurn << " ---" << std::endl;
     
+    // logi
+    logMessage("\n--- START OF TURN " + std::to_string(currentTurn) + " ---");
+    
     city.executeCitizenActions();
     
     resourceManager.consumeResource(ResourceType::FOOD, CONSUMPTION_FOOD);
     resourceManager.consumeResource(ResourceType::GOLD, CONSUMPTION_GOLD);
     
+    // logi
+    logMessage(" [GLOBAL] Miasto skonsumowalo centralnie: " + std::to_string(CONSUMPTION_FOOD) + " FOOD, " + std::to_string(CONSUMPTION_GOLD) + " GOLD.");
+    
     city.updateTurnsToCollapse(resourceManager);
 
     if (city.checkCollapseConditions()) {
         displayReport();
+        
+        // zapis do logow
+        logMessage("=========================================");
+        logMessage("             THE CITY COLLAPSED!         ");
+        logMessage("=========================================");
+        logMessage("Turns survived: " + std::to_string(currentTurn));
+
         std::cout << "\n=========================================" << std::endl;
         std::cout << "             THE CITY COLLAPSED!         " << std::endl;
         std::cout << "=========================================" << std::endl;
@@ -157,6 +172,13 @@ void Engine::executeTurn() {
     }
 
     displayReport();
+    
+    // stan magazynu -> plik z logami
+    logMessage(" [STAN MAGAZYNU] FOOD: " + std::to_string(resourceManager.getResourceAmount(ResourceType::FOOD))
+        + " | GOLD: " + std::to_string(resourceManager.getResourceAmount(ResourceType::GOLD))
+        + " | WOOD: " + std::to_string(resourceManager.getResourceAmount(ResourceType::WOOD))
+        + " | STONE: " + std::to_string(resourceManager.getResourceAmount(ResourceType::STONE))
+        + " | SAFETY: " + std::to_string(city.getSafety()));
 }
 
 void Engine::displayReport() const {
