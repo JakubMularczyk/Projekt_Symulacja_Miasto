@@ -61,20 +61,22 @@ bool Engine::loadConfig(const std::string& filePath) {
 
 Engine::Engine() : currentTurn(0), isSimulationRunning(false) {
     if (!loadConfig("config.txt")) {
-        resourceManager.addResource(ResourceType::FOOD, 6);
-        resourceManager.addResource(ResourceType::GOLD, 10);
+        resourceManager.addResource(ResourceType::FOOD, 60);
+        resourceManager.addResource(ResourceType::GOLD, 30);
         resourceManager.addResource(ResourceType::WOOD, 100);
         resourceManager.addResource(ResourceType::STONE, 50);
     }
-
-    city.addCitizen(std::make_unique<Farmer>(40, 30, 100, &city.getResourceManager(), 10, 2));
-    city.addCitizen(std::make_unique<Farmer>(40, 30, 100, &city.getResourceManager(), 10));
-    city.addCitizen(std::make_unique<Farmer>(40, 30, 100, &city.getResourceManager(), 10));
-    city.addCitizen(std::make_unique<Merchant>(40, 30, 100, &city.getResourceManager(), 2));
-    city.addCitizen(std::make_unique<Merchant>(40, 30, 100, &city.getResourceManager(), 6));
-    city.addCitizen(std::make_unique<Guard>(40, 30, 100, &city, &city.getResourceManager(), 10, 1));
+    city.addCitizen(std::make_unique<Farmer>(40, 30, 100, &resourceManager, 10, 2));
+    city.addCitizen(std::make_unique<Farmer>(40, 30, 100, &resourceManager, 10, 2));
+    city.addCitizen(std::make_unique<Farmer>(40, 30, 100, &resourceManager, 10, 2));
+    city.addCitizen(std::make_unique<Farmer>(40, 30, 100, &resourceManager, 10, 2));
+    city.addCitizen(std::make_unique<Farmer>(40, 30, 100, &resourceManager, 10));
+    city.addCitizen(std::make_unique<Merchant>(40, 30, 100, &resourceManager, 2));
+    city.addCitizen(std::make_unique<Merchant>(40, 30, 100, &resourceManager, 6));
+    city.addCitizen(std::make_unique<Woodcutter>(40, 30, 100, &resourceManager, 6));
+    city.addCitizen(std::make_unique<Stonecutter>(40, 30, 100, &resourceManager, 6));
+    city.addCitizen(std::make_unique<Guard>(40, 30, 100, &city, &resourceManager, 10, 1));
 }
-
 void Engine::run() {
     isSimulationRunning = true;
     std::cout << "--- WELCOME TO THE MEDIEVAL CITY SIMULATION ---" << std::endl;
