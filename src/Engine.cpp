@@ -9,6 +9,7 @@
 #include <fstream>
 #include <sstream>
 #include "Logger.h" // nowe!
+#include "RandomEventManager.h" // nowsze!!
 
 #define HAPPINESS_LEVEL 40
 #define AGE 30
@@ -144,9 +145,12 @@ void Engine::executeTurn() {
     logMessage("\n--- START OF TURN " + std::to_string(currentTurn) + " ---");
     
     city.executeCitizenActions();
-    
+
     resourceManager.consumeResource(ResourceType::FOOD, CONSUMPTION_FOOD);
     resourceManager.consumeResource(ResourceType::GOLD, CONSUMPTION_GOLD);
+    //temporary version witout rand:
+    RandomEventManager randomEventManager;
+    randomEventManager.executeAllEvents(city,resourceManager);
     
     // logi
     logMessage(" [GLOBAL] Miasto skonsumowalo centralnie: " + std::to_string(CONSUMPTION_FOOD) + " FOOD, " + std::to_string(CONSUMPTION_GOLD) + " GOLD.");

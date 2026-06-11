@@ -18,7 +18,8 @@ add_executable(SymulacjaMiasto
     src/Stonecutter.cpp
     src/RandomEvent.cpp
     src/FireEvent.cpp
-  
+    src/DroughtEvent.cpp
+    src/RandomEventManager.cpp
 )
 
 target_include_directories(SymulacjaMiasto PRIVATE src/Include)

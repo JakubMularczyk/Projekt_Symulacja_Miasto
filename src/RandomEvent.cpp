@@ -1,5 +1,5 @@
 #include "RandomEvent.h"
-RandomEvent::RandomEvent(int chance, std::string description, std::string name)
+RandomEvent::RandomEvent(int chance,const std::string& description,const std::string& name)
 	: chance(chance), description(description), name(name) {
 }
 

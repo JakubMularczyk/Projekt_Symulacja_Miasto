@@ -1,4 +1,4 @@
-#ifndef LOGGER_H
+#pragma once
 #define LOGGER_H
 
 #include <fstream>
@@ -22,4 +22,4 @@ inline void clearLogFile() {
     }
 }
 
-#endif 
+
