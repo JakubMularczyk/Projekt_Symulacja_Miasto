@@ -1,36 +1,24 @@
 cmake_minimum_required(VERSION 3.12)
 project(SymulacjaMiasto CXX)
 
-# Ustawienie standardu C++ (np. C++17 lub C++20)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Definiowanie pliku wykonywalnego i wskazanie wszystkich plików źródłowych (.cpp)
-
 add_executable(SymulacjaMiasto
     src/main.cpp
-    src/Engine.h
-    src/Engine.cpp
-    src/City.h
-    src/City.cpp
-    src/Citizen.h
+    src/Building.cpp
     src/Citizen.cpp
-    src/Farmer.h
+    src/City.cpp
+    src/Engine.cpp
     src/Farmer.cpp
-    src/Merchant.h
     src/Merchant.cpp
-    src/Guard.h
     src/Guard.cpp
-    src/ResourceManager.h
     src/ResourceManager.cpp
-    src/Resources.h
-    src/Woodcutter.h
     src/Woodcutter.cpp
     src/Stonecutter.cpp
-    src/Stonecutter.h
- "src/RandomEvent.h" "src/RandomEvent.cpp" "src/FireEvent.h" "src/FireEvent.cpp")
+    src/RandomEvent.cpp
+    src/FireEvent.cpp
     
+)
 
-
-# Wskazanie, gdzie kompilator ma szukać plików nagłówkowych (.h)
-target_include_directories(SymulacjaMiasto PRIVATE src)
+target_include_directories(SymulacjaMiasto PRIVATE src/Include)

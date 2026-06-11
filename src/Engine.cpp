@@ -114,7 +114,7 @@ void Engine::executeTurn() {
     std::cout << "\n--- START OF TURN " << currentTurn << " ---" << std::endl;
     
     city.executeCitizenActions();
-    
+    //City maintenance cost:
     resourceManager.consumeResource(ResourceType::FOOD, 10);
     resourceManager.consumeResource(ResourceType::GOLD, 5);
     
