@@ -1,13 +1,19 @@
 #include "Farmer.h"
 
-Farmer::Farmer(int happinessLevel, int age, int healthLevel, ResourceManager* resourceManager, int foodProduction, int foodConsumption)
-    : Citizen(happinessLevel, age, healthLevel), resourceManager(resourceManager), foodProduction(foodProduction), foodConsumption(foodConsumption) {
+Farmer::Farmer(int happinessLevel, int age, int healthLevel, ResourceManager* resourceManager, int foodProduction)
+    : Citizen(happinessLevel, age, healthLevel, resourceManager), foodProduction(foodProduction) {
 }
 
 void Farmer::work() {
-    resourceManager->addResource(ResourceType::FOOD, foodProduction);
-}
+    if (!resourceManager) return;
 
-void Farmer::consume() {
-    resourceManager->consumeResource(ResourceType::FOOD, foodConsumption);
+    float happinessModifier = happinessLevel / 100.0f;
+
+    int actualProduction = static_cast<int>(foodProduction * happinessModifier);
+
+    if (actualProduction < 1 && happinessLevel > 0) {
+        actualProduction = 1;
+    }
+
+    resourceManager->addResource(ResourceType::FOOD, actualProduction);
 }
