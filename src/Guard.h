@@ -11,7 +11,7 @@ private:
     City* city;
 
 public:
-    Guard(int happinessLevel = 0, int age = 0, int healthLevel = 0, City* city = nullptr, ResourceManager* resourceManager = nullptr, int safetyProduction = 10, int foodConsumption = 1);
+    Guard(int happinessLevel, int age, ResourceManager* rm, int foodConsumption, int safetyProduction, City* city);
     void work() override;
     void consume() override;
 };
