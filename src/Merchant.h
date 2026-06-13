@@ -8,7 +8,7 @@ private:
     int const foodConsumption;
 
 public:
-    Merchant(int happinessLevel = 0, int age = 0, int healthLevel = 0, ResourceManager* resourceManager = nullptr, int foodConsumption = 1);
+    Merchant(int happinessLevel, int age, ResourceManager* rm, int foodConsumption);
     void work() override;
     void consume() override;
 };

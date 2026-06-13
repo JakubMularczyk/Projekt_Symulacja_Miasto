@@ -1,7 +1,8 @@
 #include "Guard.h"
 
-Guard::Guard(int happinessLevel, int age, int healthLevel, City* city, ResourceManager* resourceManager, int safetyProduction, int foodConsumption)
-    : Citizen(happinessLevel, age, healthLevel), city(city), resourceManager(resourceManager), safetyProduction(safetyProduction), foodConsumption(foodConsumption) {
+Guard::Guard(int happinessLevel, int age, ResourceManager* rm, int foodConsumption, int safetyProduction, City* city)
+    : Citizen(happinessLevel, age), resourceManager(rm), foodConsumption(foodConsumption),
+    safetyProduction(safetyProduction), city(city) { // city jest teraz poprawnie zainicjowane
 }
 
 void Guard::work() {

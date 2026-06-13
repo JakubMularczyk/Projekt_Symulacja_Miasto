@@ -14,12 +14,12 @@ Engine::Engine() : currentTurn(0), isSimulationRunning(false) {
     city.getResourceManager().addResource(ResourceType::STONE, 50);
 
     // Adding citizens
-    city.addCitizen(std::make_unique<Farmer>(40, 30, 100, &city.getResourceManager(), 10, 2));
-    city.addCitizen(std::make_unique<Farmer>(40, 30, 100, &city.getResourceManager(), 10));
-    city.addCitizen(std::make_unique<Farmer>(40, 30, 100, &city.getResourceManager(), 10));
-    city.addCitizen(std::make_unique<Merchant>(40, 30, 100, &city.getResourceManager(), 2));
-    city.addCitizen(std::make_unique<Merchant>(40, 30, 100, &city.getResourceManager(), 6));
-    city.addCitizen(std::make_unique<Guard>(40, 30, 100, &city, &city.getResourceManager(), 10, 1));
+    city.addCitizen(std::make_unique<Farmer>(40, 30, &city.getResourceManager(), 10, 2));
+    city.addCitizen(std::make_unique<Farmer>(40, 30, &city.getResourceManager(), 10, 1));
+    city.addCitizen(std::make_unique<Farmer>(40, 30, &city.getResourceManager(), 10, 1));
+    city.addCitizen(std::make_unique<Merchant>(40, 30, &city.getResourceManager(), 2));
+    city.addCitizen(std::make_unique<Merchant>(40, 30, &city.getResourceManager(), 6));
+    city.addCitizen(std::make_unique<Guard>(40, 30, &city.getResourceManager(), 1, 10, &city));
 }
 
 void Engine::run() {

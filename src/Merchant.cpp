@@ -1,7 +1,7 @@
 #include "Merchant.h"
 
-Merchant::Merchant(int happinessLevel, int age, int healthLevel, ResourceManager* resourceManager, int foodConsumption)
-    : Citizen(happinessLevel, age, healthLevel), resourceManager(resourceManager), foodConsumption(foodConsumption) {
+Merchant::Merchant(int happinessLevel, int age, ResourceManager* rm, int foodConsumption)
+    : Citizen(happinessLevel, age), resourceManager(rm), foodConsumption(foodConsumption) {
 }
 
 void Merchant::work() {
