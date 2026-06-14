@@ -20,13 +20,13 @@ void DroughtEvent::execute(City& city, ResourceManager& resourceManager) {
 	if (resourceManager.getResourceAmount(ResourceType::FOOD) < 50) {
 		int foodLoss = resourceManager.getResourceAmount(ResourceType::FOOD);
 		resourceManager.consumeResource(ResourceType::FOOD, foodLoss);
-		logMessage("[RANDOMEVENT] Fire destroyed " + std::to_string(foodLoss) + " FOOD.");
+		logMessage("[RANDOMEVENT] Drought destroyed " + std::to_string(foodLoss) + " FOOD.");
 	}
 	else
 	{
 		int foodLoss = std::round(resourceManager.getResourceAmount(ResourceType::FOOD) * foodLossRatio);
 		resourceManager.consumeResource(ResourceType::FOOD, foodLoss);
-		logMessage("[RANDOMEVENT] Fire destroyed " + std::to_string(foodLoss) + " FOOD.");
+		logMessage("[RANDOMEVENT] Drought destroyed " + std::to_string(foodLoss) + " FOOD.");
 
 	}
 

@@ -19,7 +19,8 @@ add_executable(SymulacjaMiasto
     src/RandomEvent.cpp
     src/FireEvent.cpp
     src/DroughtEvent.cpp
+    src/BanditAttackEvent.cpp
     src/RandomEventManager.cpp
-)
+ "src/Include/PopulationManager.h" "src/PopulationManager.cpp" "src/Include/PopulationFactory.h" "src/PopulationFactory.cpp")
 
 target_include_directories(SymulacjaMiasto PRIVATE src/Include)

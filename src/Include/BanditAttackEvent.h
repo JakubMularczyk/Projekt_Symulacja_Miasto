@@ -1,8 +1,8 @@
 #pragma once
 #include "RandomEvent.h"
-class DroughtEvent : public RandomEvent {
+class BanditAttackEvent : public RandomEvent {
 public:
-	DroughtEvent();
+	BanditAttackEvent();
 
 	void execute(City& city, ResourceManager& resourceManager) override;
 

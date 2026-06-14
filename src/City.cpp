@@ -46,17 +46,13 @@ bool City::checkCollapseConditions() {
     return false;
 }
 
-void City::addCitizen(std::unique_ptr<Citizen> citizen) {
-    citizens.push_back(std::move(citizen));
+
+PopulationManager& City::getPopulationManager()
+{
+    return populationManager;
 }
 
-void City::executeCitizenActions() {
-    for (auto& citizen : citizens) {
-        citizen->work();
-        citizen->consume();
-    }
-}
-
-void City::addBuilding(std::unique_ptr<Building> building) {
-    buildings.push_back(std::move(building));
+const PopulationManager& City::getPopulationManager() const
+{
+    return populationManager;
 }
