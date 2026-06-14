@@ -2,12 +2,14 @@
 
 #include "City.h"
 #include "ResourceManager.h" 
+#include "RandomEventManager.h"
 #include <string>
 
 class Engine {
 private:
     City city;
     ResourceManager resourceManager; 
+    RandomEventManager randomEventManager;
     int currentTurn;
     bool isSimulationRunning;
 

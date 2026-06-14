@@ -6,7 +6,6 @@
 #include <sstream>
 #include "Logger.h" 
 #include"Include/PopulationManager.h"
-#include "RandomEventManager.h"
 #define CONSUMPTION_FOOD 10
 #define CONSUMPTION_GOLD 5
 
@@ -77,8 +76,7 @@ Engine::Engine() : currentTurn(0), isSimulationRunning(false) {
 	PopulationManager populationManager;
 	PopulationFactory populaationFactory;
 	populaationFactory.createStartingPopulation(populationManager, city, resourceManager);
-
-
+	
 }
 
 void Engine::run() {
@@ -125,9 +123,13 @@ void Engine::executeTurn() {
 
 	resourceManager.consumeResource(ResourceType::FOOD, CONSUMPTION_FOOD);
 	resourceManager.consumeResource(ResourceType::GOLD, CONSUMPTION_GOLD);
-	//temporary version witout rand:
-	//RandomEventManager randomEventManager;
-	//randomEventManager.executeAllEvents(city, resourceManager);
+	
+	
+	//RANDOMEVENT
+	
+	if (currentTurn > 5) {
+		randomEventManager.executeRandomEvent(city, resourceManager);
+	}
 
 	// logi
 	logMessage(" [GLOBAL] Miasto skonsumowalo centralnie: " + std::to_string(CONSUMPTION_FOOD) + " FOOD, " + std::to_string(CONSUMPTION_GOLD) + " GOLD.");
