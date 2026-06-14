@@ -119,6 +119,7 @@ void Engine::executeTurn() {
 	logMessage("\n--- START OF TURN " + std::to_string(currentTurn) + " ---");
 
 	city.getPopulationManager().executeCitizenActions();
+	city.getPopulationManager().updateAllHappiness(resourceManager, city.getSafety());
 
 	resourceManager.consumeResource(ResourceType::FOOD, CONSUMPTION_FOOD);
 	resourceManager.consumeResource(ResourceType::GOLD, CONSUMPTION_GOLD);
@@ -171,6 +172,7 @@ void Engine::displayReport() const {
 		<< " | WOOD: " << resourceManager.getResourceAmount(ResourceType::WOOD)
 		<< " | STONE: " << resourceManager.getResourceAmount(ResourceType::STONE) << std::endl;
 	std::cout << " SAFETY: " << city.getSafety() << std::endl;
+	std::cout << " AVG HAPPINESS: " << city.getPopulationManager().getAverageHappiness() << std::endl;
 	std::cout << " POPULATION: " << city.getPopulationManager().getPopulation() << std::endl;
 	std::cout << "=========================================" << std::endl;
 }
