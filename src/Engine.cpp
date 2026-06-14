@@ -73,9 +73,8 @@ Engine::Engine() : currentTurn(0), isSimulationRunning(false) {
 	}
 
 	// population added by factoryclass
-	PopulationManager populationManager;
 	PopulationFactory populaationFactory;
-	populaationFactory.createStartingPopulation(populationManager, city, resourceManager);
+	populaationFactory.createStartingPopulation (city, resourceManager);
 	
 }
 
@@ -172,5 +171,6 @@ void Engine::displayReport() const {
 		<< " | WOOD: " << resourceManager.getResourceAmount(ResourceType::WOOD)
 		<< " | STONE: " << resourceManager.getResourceAmount(ResourceType::STONE) << std::endl;
 	std::cout << " SAFETY: " << city.getSafety() << std::endl;
+	std::cout << " POPULATION: " << city.getPopulationManager().getPopulation() << std::endl;
 	std::cout << "=========================================" << std::endl;
 }

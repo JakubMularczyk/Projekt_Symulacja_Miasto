@@ -23,7 +23,7 @@
 #define GUARD_CONSUMPTION 1
 
 
-void PopulationFactory::createStartingPopulation(PopulationManager& populationManager, City& city, ResourceManager& resourceManager) {
+void PopulationFactory::createStartingPopulation(City& city, ResourceManager& resourceManager) {
 	city.getPopulationManager().addCitizen(std::make_unique<Farmer>(HAPPINESS_LEVEL, AGE, HEALTH_LEVEL, &resourceManager, FARMER_PRODUCTION, FARMER_CONSUMPTION));
 	city.getPopulationManager().addCitizen(std::make_unique<Farmer>(HAPPINESS_LEVEL, AGE, HEALTH_LEVEL, &resourceManager, FARMER_PRODUCTION, FARMER_CONSUMPTION));
 	city.getPopulationManager().addCitizen(std::make_unique<Farmer>(HAPPINESS_LEVEL, AGE, HEALTH_LEVEL, &resourceManager, FARMER_PRODUCTION, FARMER_CONSUMPTION));
@@ -37,5 +37,7 @@ void PopulationFactory::createStartingPopulation(PopulationManager& populationMa
 	city.getPopulationManager().addCitizen(std::make_unique<Stonecutter>(HAPPINESS_LEVEL, AGE, HEALTH_LEVEL, &resourceManager, STONECUTTER_PRODUCTION));
 
 	city.getPopulationManager().addCitizen(std::make_unique<Guard>(HAPPINESS_LEVEL, AGE, HEALTH_LEVEL, &city, &resourceManager, GUARD_PRODUCTION, GUARD_CONSUMPTION));
+	city.getPopulationManager().addCitizen(std::make_unique<Guard>(HAPPINESS_LEVEL, AGE, HEALTH_LEVEL, &city, &resourceManager, GUARD_PRODUCTION, GUARD_CONSUMPTION));
+
 
 }
