@@ -13,4 +13,7 @@ public:
 
     virtual void work() = 0;
     virtual void consume() = 0;
+
+    void updateHappiness(int foodPerCitizen, int goldPerCitizen, int safety);
+    int getHappiness() const;
 };
