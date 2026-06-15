@@ -15,5 +15,6 @@ public:
     virtual void consume() = 0;
 
     void updateHappiness(int foodPerCitizen, int goldPerCitizen, int safety);
+    void setHappiness(int value);
     int getHappiness() const;
 };
