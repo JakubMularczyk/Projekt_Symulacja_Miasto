@@ -1,4 +1,4 @@
-#include "BanditAttackEvent.h"
+#include "RiotsEvent.h"
 #include "City.h"
 #include <iostream>
 #include "ResourceManager.h"
@@ -6,28 +6,29 @@
 #include "Logger.h"
 #include <cmath>
 
-BanditAttackEvent::BanditAttackEvent()
-	:RandomEvent(30, "Bandits are attacking the city!!!!", "Bandits Attack") {
+RiotsEvent::RiotsEvent()
+	:RandomEvent(30, "Riots raised in the city!!!!", "Riots") {
 
 }
 
-void BanditAttackEvent::execute(City& city, ResourceManager& resourceManager) {
-	const double goldLossRatio = 0.5;
-	const int safetyLoss = 40;
+void RiotsEvent::execute(City& city, ResourceManager& resourceManager) {
+	
+
 
 	std::cout << "Random Event: " << getName() << " --->" << getDescription() << std::endl;
-
+	const double goldLossRatio = 0.3;
+	const int safetyLoss = 25;
 	if (resourceManager.getResourceAmount(ResourceType::GOLD) < 50) {
 		int goldLoss = resourceManager.getResourceAmount(ResourceType::GOLD);
 		resourceManager.consumeResource(ResourceType::GOLD, goldLoss);
-		logMessage("[RANDOMEVENT] Bandits has stolen " + std::to_string(goldLoss) + " gold.");
+		logMessage("[RANDOMEVENT] Riots has stolen " + std::to_string(goldLoss) + " gold.");
 	}
 	else
 	{
-		int goldLossRatioUpdated = (1 - city.getSafety())*goldLossRatio;
+		int goldLossRatioUpdated = (1 - city.getSafety()) * goldLossRatio;
 		int goldLoss = std::round(resourceManager.getResourceAmount(ResourceType::GOLD) * goldLossRatioUpdated);
 		resourceManager.consumeResource(ResourceType::GOLD, goldLoss);
-		logMessage("[RANDOMEVENT] Bandits has stolen " + std::to_string(goldLoss) + " gold.");
+		logMessage("[RANDOMEVENT] Riots has stolen " + std::to_string(goldLoss) + " gold.");
 
 	}
 	if (city.getSafety() < safetyLoss) {
