@@ -8,6 +8,9 @@ Citizen::Citizen(int happinessLevel, int age, int healthLevel)
 
 void Citizen::work() {}
 void Citizen::consume() {}
+void Citizen::setHappiness(int value) {
+    happinessLevel = std::clamp(value, 0, 100);
+}
 
 int Citizen::getHappiness() const {
     return happinessLevel;
