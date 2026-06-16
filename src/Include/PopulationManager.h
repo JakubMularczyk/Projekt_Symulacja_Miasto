@@ -15,8 +15,4 @@ public:
     int getAverageHappiness() const;
     int getPopulation() const;
     void handleMigration(int currentTurn, ResourceManager& resourceManager);
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> origin/main

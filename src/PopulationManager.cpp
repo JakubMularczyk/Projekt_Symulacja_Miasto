@@ -1,15 +1,9 @@
 #include "PopulationManager.h"
 #include "Citizen.h"
 #include "ResourceManager.h"
-<<<<<<< HEAD
 #include "Farmer.h"
 #include <utility>
 #include <iostream>
-=======
-#include "Farmer.h" 
-#include <utility>
-#include <iostream> 
->>>>>>> origin/main
 
 void PopulationManager::addCitizen(std::unique_ptr<Citizen> citizen) {
     population.push_back(std::move(citizen));
@@ -34,7 +28,15 @@ void PopulationManager::updateAllHappiness(const ResourceManager& resourceManage
     }
 }
 
-<<<<<<< HEAD
+int PopulationManager::getAverageHappiness() const {
+    if (population.empty()) return 0;
+    int sum = 0;
+    for (const auto& citizen : population) {
+        sum += citizen->getHappiness();
+    }
+    return sum / population.size();
+}
+
 int PopulationManager::getPopulation() const {
     return population.size();
 }
@@ -54,37 +56,4 @@ void PopulationManager::handleMigration(int currentTurn, ResourceManager& resour
             std::cout << ">>> MIGRATION: Due to prosperity, a new citizen (Farmer) has joined the city! <<<" << std::endl;
         }
     }
-}
-
-=======
->>>>>>> origin/main
-int PopulationManager::getAverageHappiness() const {
-    if (population.empty()) return 0;
-    int sum = 0;
-    for (const auto& citizen : population) {
-        sum += citizen->getHappiness();
-    }
-    return sum / population.size();
-}
-
-int PopulationManager::getPopulation() const {
-    return population.size();
-}
-
-void PopulationManager::handleMigration(int currentTurn, ResourceManager& resourceManager) {
-    if (currentTurn > 0 && currentTurn % 5 == 0) {
-        int currentPopulation = getPopulation();
-        
-        if (currentPopulation == 0) return; 
-
-        // czy starczy jedzenia
-        int foodPerCitizen = resourceManager.getResourceAmount(ResourceType::FOOD) / currentPopulation;
-
-        if (foodPerCitizen >= 5) {
-            // nowy obywatel
-            addCitizen(std::make_unique<Farmer>(40, 30, 100, &resourceManager, 10, 2));
-            std::cout << ">>> MIGRATION: Due to prosperity, a new citizen (Farmer) has joined the city! <<<" << std::endl;
-        }
-    }
-}
 }

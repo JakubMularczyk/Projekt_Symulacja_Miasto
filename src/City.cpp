@@ -50,11 +50,7 @@ bool City::checkCollapseConditions() {
         std::cout << "======================================================\n";
         return true;
     }
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> origin/main
     if (turnsWithoutGold >= 3) {
         std::cout << "\n======================================================\n";
         std::cout << " [KONIEC GRY] MIASTO UPADLO!\n";
@@ -87,7 +83,6 @@ const PopulationManager& City::getPopulationManager() const
     return populationManager;
 }
 
-<<<<<<< HEAD
 BuildingManager& City::getBuildingManager()
 {
     return buildingManager;
@@ -95,12 +90,5 @@ BuildingManager& City::getBuildingManager()
 
 const BuildingManager& City::getBuildingManager() const
 {
-=======
-BuildingManager& City::getBuildingManager() {
-    return buildingManager;
-}
-
-const BuildingManager& City::getBuildingManager() const {
->>>>>>> origin/main
     return buildingManager;
 }
