@@ -164,4 +164,11 @@ void Engine::displayReport() const {
     std::cout << "=========================================" << std::endl;
     std::cout << " REPORT FROM TURN: " << currentTurn << std::endl;
     std::cout << " FOOD: " << resourceManager.getResourceAmount(ResourceType::FOOD)
-        << " | GOLD: " << res
+        << " | GOLD: " << resourceManager.getResourceAmount(ResourceType::GOLD)
+        << " | WOOD: " << resourceManager.getResourceAmount(ResourceType::WOOD)
+        << " | STONE: " << resourceManager.getResourceAmount(ResourceType::STONE) << std::endl;
+    std::cout << " SAFETY: " << city.getSafety() << std::endl;
+    std::cout << " AVG HAPPINESS: " << city.getPopulationManager().getAverageHappiness() << std::endl;
+    std::cout << " POPULATION: " << city.getPopulationManager().getPopulation() << std::endl;
+    std::cout << "=========================================" << std::endl;
+}
