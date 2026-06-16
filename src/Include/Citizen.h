@@ -19,4 +19,5 @@ public:
     void updateHappiness(int foodPerCitizen, int goldPerCitizen, int safety);
     void setHappiness(int value);
     int getHappiness() const;
+    float getProductionMultiplier() const;
 };

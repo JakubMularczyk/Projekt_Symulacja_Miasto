@@ -15,6 +15,13 @@ add_executable(SymulacjaMiasto
     "src/Include/Farm.h"
     "src/Include/Barracks.h"
     src/Building.cpp
+    src/BuildingManager.cpp
+    src/BuildingFactory.cpp
+    src/Farm.cpp
+    src/Sawmill.cpp
+    src/Quarry.cpp
+    src/Barracks.cpp
+    src/Marketplace.cpp
     src/Citizen.cpp
     src/City.cpp
     src/Engine.cpp
@@ -33,6 +40,9 @@ add_executable(SymulacjaMiasto
     src/PopulationFactory.cpp
     src/NoEvent.cpp
     src/PlagueEvent.cpp
+<<<<<<< HEAD
+    src/RiotsEvent.cpp)
+=======
     src/RiotsEvent.cpp
     src/Farm.cpp
     src/Sawmill.cpp
@@ -54,5 +64,6 @@ add_executable(SymulacjaMiasto
     "src/Include/Barracks.h"
     "src/Include/Marketplace.h"
     "src/Include/BuildingFactory.h")
+>>>>>>> origin/main
 
 target_include_directories(SymulacjaMiasto PRIVATE src/Include)

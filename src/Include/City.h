@@ -31,4 +31,8 @@ public:
 
     BuildingManager& getBuildingManager();
     const BuildingManager& getBuildingManager() const;
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> origin/main

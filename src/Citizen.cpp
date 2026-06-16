@@ -9,17 +9,25 @@ Citizen::Citizen(int happinessLevel, int age, int healthLevel)
 
 void Citizen::work() {}
 void Citizen::consume() {}
+void Citizen::setHappiness(int value) {
+    happinessLevel = std::clamp(value, 0, 100);
+}
 
 int Citizen::getHappiness() const {
     return happinessLevel;
 }
 
+<<<<<<< HEAD
+float Citizen::getProductionMultiplier() const {
+    return happinessLevel / 100.0f;
+=======
 void Citizen::setHappiness(int value) {
     happinessLevel = std::clamp(value, 0, 100);
 }
 
 int Citizen::scaledProduction(int baseProduction) const {
     return baseProduction * happinessLevel / 100;
+>>>>>>> origin/main
 }
 
 void Citizen::updateHappiness(int foodPerCitizen, int goldPerCitizen, int safety) {
