@@ -15,4 +15,5 @@ public:
     void updateAllHappiness(const ResourceManager& resourceManager, int safety);
     int getAverageHappiness() const;
     int getPopulation() const;
+    void handleMigration(int currentTurn, ResourceManager& resourceManager);
 };

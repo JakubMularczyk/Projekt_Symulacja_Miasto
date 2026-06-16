@@ -66,8 +66,8 @@ bool Engine::loadConfig(const std::string& filePath) {
 
 Engine::Engine() : currentTurn(0), isSimulationRunning(false) {
 	if (!loadConfig("config.txt")) {
-		resourceManager.addResource(ResourceType::FOOD, 60);
-		resourceManager.addResource(ResourceType::GOLD, 30);
+		resourceManager.addResource(ResourceType::FOOD, 200);
+		resourceManager.addResource(ResourceType::GOLD, 100);
 		resourceManager.addResource(ResourceType::WOOD, 100);
 		resourceManager.addResource(ResourceType::STONE, 50);
 	}
@@ -121,7 +121,6 @@ void Engine::executeTurn() {
 	city.getPopulationManager().executeCitizenActions();
 	city.getPopulationManager().updateAllHappiness(resourceManager, city.getSafety());
 
-	resourceManager.consumeResource(ResourceType::FOOD, CONSUMPTION_FOOD);
 	resourceManager.consumeResource(ResourceType::GOLD, CONSUMPTION_GOLD);
 	
 	
@@ -132,7 +131,7 @@ void Engine::executeTurn() {
 	}
 
 	// logi
-	logMessage(" [GLOBAL] Miasto skonsumowalo centralnie: " + std::to_string(CONSUMPTION_FOOD) + " FOOD, " + std::to_string(CONSUMPTION_GOLD) + " GOLD.");
+logMessage(" [GLOBAL] The city centrally consumed: " + std::to_string(CONSUMPTION_FOOD) + " FOOD, " + std::to_string(CONSUMPTION_GOLD) + " GOLD.");
 
 	city.updateTurnsToCollapse(resourceManager);
 

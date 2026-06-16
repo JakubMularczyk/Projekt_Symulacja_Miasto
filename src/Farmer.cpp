@@ -5,7 +5,8 @@ Farmer::Farmer(int happinessLevel, int age, int healthLevel, ResourceManager* re
 }
 
 void Farmer::work() {
-    resourceManager->addResource(ResourceType::FOOD, foodProduction);
+    int effectiveProduction = static_cast<int>(foodProduction * getProductionMultiplier());
+    resourceManager->addResource(ResourceType::FOOD, effectiveProduction);
 }
 
 void Farmer::consume() {

@@ -1,7 +1,9 @@
 #include "PopulationManager.h"
 #include "Citizen.h"
 #include "ResourceManager.h"
+#include "Farmer.h"
 #include <utility>
+#include <iostream>
 
 void PopulationManager::addCitizen(std::unique_ptr<Citizen> citizen) {
     population.push_back(std::move(citizen));
@@ -28,6 +30,23 @@ void PopulationManager::updateAllHappiness(const ResourceManager& resourceManage
 
 int PopulationManager::getPopulation() const {
     return population.size();
+}
+
+void PopulationManager::handleMigration(int currentTurn, ResourceManager& resourceManager) {
+    if (currentTurn > 0 && currentTurn % 5 == 0) {
+        int currentPopulation = getPopulation();
+
+        if (currentPopulation == 0) return;
+
+        // czy starczy jedzenia
+        int foodPerCitizen = resourceManager.getResourceAmount(ResourceType::FOOD) / currentPopulation;
+
+        if (foodPerCitizen >= 5) {
+            // nowy obywatel
+            addCitizen(std::make_unique<Farmer>(40, 30, 100, &resourceManager, 10, 2));
+            std::cout << ">>> MIGRATION: Due to prosperity, a new citizen (Farmer) has joined the city! <<<" << std::endl;
+        }
+    }
 }
 
 int PopulationManager::getAverageHappiness() const {

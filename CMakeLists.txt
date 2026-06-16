@@ -7,6 +7,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_executable(SymulacjaMiasto
     src/main.cpp
     src/Building.cpp
+    src/BuildingManager.cpp
+    src/BuildingFactory.cpp
+    src/Farm.cpp
+    src/Sawmill.cpp
+    src/Quarry.cpp
+    src/Barracks.cpp
+    src/Marketplace.cpp
     src/Citizen.cpp
     src/City.cpp
     src/Engine.cpp
@@ -21,6 +28,10 @@ add_executable(SymulacjaMiasto
     src/DroughtEvent.cpp
     src/BanditAttackEvent.cpp
     src/RandomEventManager.cpp
- "src/Include/PopulationManager.h" "src/PopulationManager.cpp" "src/Include/PopulationFactory.h" "src/PopulationFactory.cpp" "src/Include/NoEvent.h" "src/NoEvent.cpp" "src/Include/PlagueEvent.h" "src/PlagueEvent.cpp" "src/Include/RiotsEvent.h" "src/RiotsEvent.cpp")
+    src/PopulationManager.cpp
+    src/PopulationFactory.cpp
+    src/NoEvent.cpp
+    src/PlagueEvent.cpp
+    src/RiotsEvent.cpp)
 
 target_include_directories(SymulacjaMiasto PRIVATE src/Include)

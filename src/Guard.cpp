@@ -5,8 +5,9 @@ Guard::Guard(int happinessLevel, int age, int healthLevel, City* city, ResourceM
 }
 
 void Guard::work() {
-    if ((city->getSafety() + safetyProduction) <= 100) {
-        city->changeSafety(safetyProduction);
+    int effectiveProduction = static_cast<int>(safetyProduction * getProductionMultiplier());
+    if ((city->getSafety() + effectiveProduction) <= 100) {
+        city->changeSafety(effectiveProduction);
     }
 }
 

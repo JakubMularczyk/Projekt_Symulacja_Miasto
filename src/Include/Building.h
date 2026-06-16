@@ -22,4 +22,6 @@ public:
     virtual std::string getName() const = 0;
     int getDurability() const;
     bool getIsConstructed() const;
+
+    void handleExpansion(int currentTurn, ResourceManager& resourceManager); //nowy budynek
 };

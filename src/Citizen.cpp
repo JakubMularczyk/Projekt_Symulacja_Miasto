@@ -16,6 +16,10 @@ int Citizen::getHappiness() const {
     return happinessLevel;
 }
 
+float Citizen::getProductionMultiplier() const {
+    return happinessLevel / 100.0f;
+}
+
 void Citizen::updateHappiness(int foodPerCitizen, int goldPerCitizen, int safety) {
     if (foodPerCitizen >= 20) {
         happinessLevel += 10;
