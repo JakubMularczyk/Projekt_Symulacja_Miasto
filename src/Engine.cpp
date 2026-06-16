@@ -130,8 +130,7 @@ void Engine::executeTurn() {
         randomEventManager.executeRandomEvent(city, resourceManager);
     }
 
-    logMessage(" [GLOBAL] Miasto skonsumowalo centralnie: " + std::to_string(CONSUMPTION_FOOD) + " FOOD, " + std::to_string(CONSUMPTION_GOLD) + " GOLD.");
-
+logMessage(" [GLOBAL] The city centrally consumed: " + std::to_string(CONSUMPTION_FOOD) + " FOOD, " + std::to_string(CONSUMPTION_GOLD) + " GOLD.");
     city.updateTurnsToCollapse(resourceManager);
 
     if (city.checkCollapseConditions()) {
