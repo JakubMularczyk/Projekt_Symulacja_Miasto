@@ -56,3 +56,11 @@ const PopulationManager& City::getPopulationManager() const
 {
     return populationManager;
 }
+
+BuildingManager& City::getBuildingManager() {
+    return buildingManager;
+}
+
+const BuildingManager& City::getBuildingManager() const {
+    return buildingManager;
+}

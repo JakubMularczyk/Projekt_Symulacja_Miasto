@@ -26,10 +26,6 @@ void PopulationManager::updateAllHappiness(const ResourceManager& resourceManage
     }
 }
 
-int PopulationManager::getPopulation() const {
-    return population.size();
-}
-
 int PopulationManager::getAverageHappiness() const {
     if (population.empty()) return 0;
     int sum = 0;
@@ -37,4 +33,8 @@ int PopulationManager::getAverageHappiness() const {
         sum += citizen->getHappiness();
     }
     return sum / population.size();
+}
+
+int PopulationManager::getPopulation() const {
+    return population.size();
 }
