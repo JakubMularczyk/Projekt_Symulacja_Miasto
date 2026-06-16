@@ -6,6 +6,16 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(SymulacjaMiasto
     src/main.cpp
+    src/Farm.cpp
+    src/Barracks.cpp
+    src/Market.cpp
+    src/BuildingManager.cpp
+    src/BuildingFactory.cpp
+    "src/Include/BuildingManager.h"
+    "src/Include/BuildingFactory.h"
+    "src/Include/Farm.h"
+    "src/Include/Barracks.h"
+    "src/Include/Market.h"
     src/Building.cpp
     src/Citizen.cpp
     src/City.cpp
