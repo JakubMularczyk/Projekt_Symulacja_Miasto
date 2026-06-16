@@ -7,6 +7,8 @@
 #include "DroughtEvent.h"
 #include "BanditAttackEvent.h"
 #include "Include/NoEvent.h"
+#include "PlagueEvent.h"
+#include "RiotsEvent.h"
 
 #include <random>
 #include <iostream>
@@ -18,6 +20,12 @@ RandomEventManager::RandomEventManager(unsigned int seed):rng_engine(seed) {
     addEvent(std::make_unique<DroughtEvent>());
     addEvent(std::make_unique<BanditAttackEvent>());
     addEvent(std::make_unique<NoEvent>());
+    addEvent(std::make_unique<NoEvent>());
+    addEvent(std::make_unique<NoEvent>());
+    addEvent(std::make_unique<NoEvent>());
+    addEvent(std::make_unique<PlagueEvent>());
+    addEvent(std::make_unique<RiotsEvent>());
+  
 }
 void RandomEventManager::addEvent(std::unique_ptr<RandomEvent> event) {
     events.push_back(std::move(event));
