@@ -12,11 +12,5 @@ private:
 public:
     void addBuilding(std::unique_ptr<Building> building);
     void operateAll();
-<<<<<<< HEAD
     void handleExpansion(int currentTurn, ResourceManager& resourceManager);
 };
-=======
-    void buildAll(ResourceManager* resourceManager);
-    int getBuildingCount() const;
-};
->>>>>>> origin/main

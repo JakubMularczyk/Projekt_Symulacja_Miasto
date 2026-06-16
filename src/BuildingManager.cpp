@@ -1,9 +1,5 @@
 #include "BuildingManager.h"
-<<<<<<< HEAD
 #include "Farm.h"
-=======
-#include "Farm.h" 
->>>>>>> origin/main
 #include <utility>
 #include <iostream>
 
@@ -21,7 +17,6 @@ void BuildingManager::handleExpansion(int currentTurn, ResourceManager& resource
     if (currentTurn > 0 && currentTurn % 10 == 0) {
 
         auto newFarm = std::make_unique<Farm>(&resourceManager, 15);
-<<<<<<< HEAD
 
         if (newFarm->build(&resourceManager)) {
 
@@ -32,18 +27,6 @@ void BuildingManager::handleExpansion(int currentTurn, ResourceManager& resource
         }
         else {
             std::cout << ">>> AUTOMATIC EXPANSION: Canceled in turn " << currentTurn
-=======
-        
-        if (newFarm->build(&resourceManager)) {
-            
-            addBuilding(std::move(newFarm));
-            
-            std::cout << ">>> AUTOMATIC EXPANSION: Turn " << currentTurn 
-                      << ". Resources successfully invested. A new Farm has been built! <<<" << std::endl;
-        } 
-        else {
-            std::cout << ">>> AUTOMATIC EXPANSION: Canceled in turn " << currentTurn 
->>>>>>> origin/main
                       << " due to insufficient resources in the warehouse. <<<" << std::endl;
         }
     }

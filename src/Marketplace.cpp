@@ -1,30 +1,10 @@
 #include "Marketplace.h"
-<<<<<<< HEAD
-#include "ResourceManager.h"
-#include <iostream>
-
-Marketplace::Marketplace(int goldProduction, ResourceManager* resourceManager)
-    : Building(100), goldProduction(goldProduction), resourceManager(resourceManager) {
-    constructionCost[ResourceType::WOOD] = 15;
-    constructionCost[ResourceType::STONE] = 15;
-}
-
-void Marketplace::operate() {
-    resourceManager->addResource(ResourceType::GOLD, goldProduction);
-    std::cout << "Targowisko produkuje " << goldProduction << " złota." << std::endl;
-}
-
-std::string Marketplace::getName() const {
-    return "Targowisko";
-}
-=======
 #include <iostream>
 
 Marketplace::Marketplace(ResourceManager* resourceManager, int goldProduction)
-    : Building(120), resourceManager(resourceManager), goldProduction(goldProduction) {
-    constructionCost[ResourceType::WOOD] = 25;
-    constructionCost[ResourceType::STONE] = 20;
-    constructionCost[ResourceType::GOLD] = 10;
+    : Building(100), resourceManager(resourceManager), goldProduction(goldProduction) {
+    constructionCost[ResourceType::WOOD] = 15;
+    constructionCost[ResourceType::STONE] = 15;
 }
 
 void Marketplace::operate() {
@@ -36,4 +16,3 @@ void Marketplace::operate() {
 std::string Marketplace::getName() const {
     return "Marketplace";
 }
->>>>>>> origin/main

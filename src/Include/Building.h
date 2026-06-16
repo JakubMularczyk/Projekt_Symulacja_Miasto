@@ -24,8 +24,4 @@ public:
     bool getIsConstructed() const;
 
     void handleExpansion(int currentTurn, ResourceManager& resourceManager); //nowy budynek
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> origin/main

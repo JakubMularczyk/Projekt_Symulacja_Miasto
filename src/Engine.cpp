@@ -4,7 +4,7 @@
 #include <memory>
 #include <fstream>
 #include <sstream>
-#include "Logger.h" 
+#include "Logger.h"
 #include "Include/PopulationManager.h"
 #include "Include/BuildingFactory.h"
 #define CONSUMPTION_FOOD 10
@@ -66,21 +66,12 @@ bool Engine::loadConfig(const std::string& filePath) {
 }
 
 Engine::Engine() : currentTurn(0), isSimulationRunning(false) {
-<<<<<<< HEAD
-	if (!loadConfig("config.txt")) {
-		resourceManager.addResource(ResourceType::FOOD, 200);
-		resourceManager.addResource(ResourceType::GOLD, 100);
-		resourceManager.addResource(ResourceType::WOOD, 100);
-		resourceManager.addResource(ResourceType::STONE, 50);
-	}
-=======
     if (!loadConfig("config.txt")) {
         resourceManager.addResource(ResourceType::FOOD, 60);
         resourceManager.addResource(ResourceType::GOLD, 30);
         resourceManager.addResource(ResourceType::WOOD, 100);
         resourceManager.addResource(ResourceType::STONE, 50);
     }
->>>>>>> origin/main
 
     PopulationFactory populaationFactory;
     populaationFactory.createStartingPopulation(city, resourceManager);
@@ -132,28 +123,14 @@ void Engine::executeTurn() {
     city.getBuildingManager().operateAll();
     city.getPopulationManager().updateAllHappiness(resourceManager, city.getSafety());
 
-<<<<<<< HEAD
-	resourceManager.consumeResource(ResourceType::GOLD, CONSUMPTION_GOLD);
-	
-	
-	//RANDOMEVENT
-	
-	if (currentTurn > 5) {
-		randomEventManager.executeRandomEvent(city, resourceManager);
-	}
-
-	// logi
-logMessage(" [GLOBAL] The city centrally consumed: " + std::to_string(CONSUMPTION_FOOD) + " FOOD, " + std::to_string(CONSUMPTION_GOLD) + " GOLD.");
-=======
-    resourceManager.consumeResource(ResourceType::FOOD, CONSUMPTION_FOOD);
     resourceManager.consumeResource(ResourceType::GOLD, CONSUMPTION_GOLD);
 
     if (currentTurn > 5) {
         randomEventManager.executeRandomEvent(city, resourceManager);
     }
->>>>>>> origin/main
 
-logMessage(" [GLOBAL] The city centrally consumed: " + std::to_string(CONSUMPTION_FOOD) + " FOOD, " + std::to_string(CONSUMPTION_GOLD) + " GOLD.");
+    logMessage(" [GLOBAL] The city centrally consumed: " + std::to_string(CONSUMPTION_FOOD) + " FOOD, " + std::to_string(CONSUMPTION_GOLD) + " GOLD.");
+
     city.updateTurnsToCollapse(resourceManager);
 
     if (city.checkCollapseConditions()) {

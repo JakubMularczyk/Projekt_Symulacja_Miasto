@@ -45,5 +45,3 @@ int Building::getDurability() const {
 bool Building::getIsConstructed() const {
     return isConstructed;
 }
-
-}
