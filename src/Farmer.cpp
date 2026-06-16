@@ -5,7 +5,7 @@ Farmer::Farmer(int happinessLevel, int age, int healthLevel, ResourceManager* re
 }
 
 void Farmer::work() {
-    resourceManager->addResource(ResourceType::FOOD, foodProduction);
+    resourceManager->addResource(ResourceType::FOOD, scaledProduction(foodProduction));
 }
 
 void Farmer::consume() {

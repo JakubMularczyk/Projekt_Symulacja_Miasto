@@ -2,23 +2,21 @@
 #include <iostream>
 
 Stonecutter::Stonecutter(int happinessLevel, int age, int healthLevel, ResourceManager* resourceManager, int stoneProduction, int foodConsumption)
-    : Citizen(happinessLevel, age, healthLevel), 
-      resourceManager(resourceManager), 
-      stoneProduction(stoneProduction), 
+    : Citizen(happinessLevel, age, healthLevel),
+      resourceManager(resourceManager),
+      stoneProduction(stoneProduction),
       foodConsumption(foodConsumption) {
 }
 
 void Stonecutter::work() {
     if (resourceManager) {
-        resourceManager->addResource(ResourceType::STONE, stoneProduction);
+        resourceManager->addResource(ResourceType::STONE, scaledProduction(stoneProduction));
     }
 }
 
 void Stonecutter::consume() {
     if (resourceManager) {
-        if (resourceManager->consumeResource(ResourceType::FOOD, foodConsumption)) {
-            
-        } else {
+        if (!resourceManager->consumeResource(ResourceType::FOOD, foodConsumption)) {
             happinessLevel -= 10;
             healthLevel -= 5;
         }

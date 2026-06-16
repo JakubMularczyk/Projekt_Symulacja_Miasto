@@ -7,7 +7,7 @@ Merchant::Merchant(int happinessLevel, int age, int healthLevel, ResourceManager
 void Merchant::work() {
     if (resourceManager->getResourceAmount(ResourceType::FOOD) > 50) {
         resourceManager->consumeResource(ResourceType::FOOD, 2);
-        resourceManager->addResource(ResourceType::GOLD, 8);
+        resourceManager->addResource(ResourceType::GOLD, scaledProduction(8));
     }
 }
 

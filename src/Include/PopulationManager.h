@@ -3,7 +3,6 @@
 #include <memory>
 class Citizen;
 class ResourceManager;
-class City;
 
 class PopulationManager {
 private:
