@@ -45,3 +45,10 @@ int Building::getDurability() const {
 bool Building::getIsConstructed() const {
     return isConstructed;
 }
+
+
+void Building::forceConstruct() {
+    durability = maxDurability;
+    isConstructed = true;
+}
+}
