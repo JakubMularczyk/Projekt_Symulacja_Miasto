@@ -24,7 +24,7 @@ void BanditAttackEvent::execute(City& city, ResourceManager& resourceManager) {
 	}
 	else
 	{
-		int goldLossRatioUpdated = (1 - city.getSafety())*goldLossRatio;
+		double goldLossRatioUpdated = goldLossRatio * (1.0 - city.getSafety() / 100.0);
 		int goldLoss = std::round(resourceManager.getResourceAmount(ResourceType::GOLD) * goldLossRatioUpdated);
 		resourceManager.consumeResource(ResourceType::GOLD, goldLoss);
 		logMessage("[RANDOMEVENT] Bandits has stolen " + std::to_string(goldLoss) + " gold.");

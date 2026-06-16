@@ -27,32 +27,32 @@ int Citizen::scaledProduction(int baseProduction) const {
 }
 
 void Citizen::updateHappiness(int foodPerCitizen, int goldPerCitizen, int safety) {
-    if (foodPerCitizen >= 20) {
-        happinessLevel += 10;
-    } else if (foodPerCitizen >= 10) {
-        happinessLevel += 3;
-    } else if (foodPerCitizen < 5) {
+    if (foodPerCitizen >= 25) {
+        happinessLevel += 5;
+    } else if (foodPerCitizen >= 12) {
+        happinessLevel += 1;
+    } else if (foodPerCitizen < 6) {
         happinessLevel -= 15;
     } else {
-        happinessLevel -= 5;
+        happinessLevel -= 8;
     }
 
-    if (goldPerCitizen >= 10) {
-        happinessLevel += 8;
-    } else if (goldPerCitizen >= 4) {
-        happinessLevel += 2;
+    if (goldPerCitizen >= 15) {
+        happinessLevel += 5;
+    } else if (goldPerCitizen >= 6) {
+        happinessLevel += 1;
     } else {
-        happinessLevel -= 4;
+        happinessLevel -= 8;
     }
 
-    if (safety >= 60) {
-        happinessLevel += 8;
-    } else if (safety >= 30) {
-        happinessLevel += 2;
-    } else if (safety < 10) {
+    if (safety >= 70) {
+        happinessLevel += 5;
+    } else if (safety >= 40) {
+        happinessLevel += 1;
+    } else if (safety < 15) {
         happinessLevel -= 15;
     } else {
-        happinessLevel -= 6;
+        happinessLevel -= 8;
     }
 
     happinessLevel = std::clamp(happinessLevel, 0, 100);

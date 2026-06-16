@@ -3,7 +3,7 @@
 #include <iostream> // Dodane do obslugi std::cout
 
 City::City() :
-    safety(10),
+    safety(40),
     turnsWithoutFood(0),
     turnsWithoutGold(0),
     turnsWithoutSafety(0) {
@@ -15,6 +15,8 @@ int City::getSafety() const {
 
 void City::changeSafety(int amount) {
     safety += amount;
+    if (safety > 100) safety = 100;
+    if (safety < 0) safety = 0;
 }
 
 void City::updateTurnsToCollapse(const ResourceManager& resourceManager) {
