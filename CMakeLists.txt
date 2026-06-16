@@ -32,8 +32,6 @@ add_executable(SymulacjaMiasto
     src/BanditAttackEvent.cpp
     src/RandomEventManager.cpp
     src/Marketplace.cpp
-    "src/Include/Marketplace.h"
-    "src/Include/PopulationManager.h" "src/PopulationManager.cpp" "src/Include/PopulationFactory.h"    "src/PopulationFactory.cpp" "src/Include/NoEvent.h" "src/NoEvent.cpp")
-    "src/Include/PopulationManager.h" "src/PopulationManager.cpp" "src/Include/PopulationFactory.h" "src/PopulationFactory.cpp" "src/Include/NoEvent.h" "src/NoEvent.cpp" "src/Include/PlagueEvent.h" "src/PlagueEvent.cpp" "src/Include/RiotsEvent.h" "src/RiotsEvent.cpp")
+    "src/Include/Marketplace.h" "src/Include/PopulationManager.h" "src/PopulationManager.cpp" "src/Include/PopulationFactory.h" "src/PopulationFactory.cpp" "src/Include/NoEvent.h" "src/NoEvent.cpp" "src/Include/PlagueEvent.h" "src/PlagueEvent.cpp" "src/Include/RiotsEvent.h" "src/RiotsEvent.cpp")
 
 target_include_directories(SymulacjaMiasto PRIVATE src/Include)
