@@ -3,7 +3,6 @@
 #include <memory>
 class Citizen;
 class ResourceManager;
-class City;
 
 class PopulationManager {
 private:
@@ -16,4 +15,8 @@ public:
     int getAverageHappiness() const;
     int getPopulation() const;
     void handleMigration(int currentTurn, ResourceManager& resourceManager);
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> origin/main

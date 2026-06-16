@@ -1,5 +1,4 @@
 #pragma once
-
 #include <vector>
 #include <memory>
 #include "Citizen.h"
@@ -32,4 +31,8 @@ public:
 
     BuildingManager& getBuildingManager();
     const BuildingManager& getBuildingManager() const;
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> origin/main

@@ -6,6 +6,8 @@ protected:
     int age;
     int healthLevel;
 
+    int scaledProduction(int baseProduction) const;
+
 public:
     Citizen(int happinessLevel = 0, int age = 0, int healthLevel = 0);
 

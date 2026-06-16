@@ -6,6 +6,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(SymulacjaMiasto
     src/main.cpp
+    src/Farm.cpp
+    src/Barracks.cpp
+    src/BuildingManager.cpp
+    src/BuildingFactory.cpp
+    "src/Include/BuildingManager.h"
+    "src/Include/BuildingFactory.h"
+    "src/Include/Farm.h"
+    "src/Include/Barracks.h"
     src/Building.cpp
     src/BuildingManager.cpp
     src/BuildingFactory.cpp
@@ -32,6 +40,30 @@ add_executable(SymulacjaMiasto
     src/PopulationFactory.cpp
     src/NoEvent.cpp
     src/PlagueEvent.cpp
+<<<<<<< HEAD
     src/RiotsEvent.cpp)
+=======
+    src/RiotsEvent.cpp
+    src/Farm.cpp
+    src/Sawmill.cpp
+    src/Quarry.cpp
+    src/Barracks.cpp
+    src/Marketplace.cpp
+    src/BuildingFactory.cpp
+    src/BuildingManager.cpp
+    "src/Include/BuildingManager.h"
+    "src/Include/BuildingFactory.h"
+    "src/Include/PopulationManager.h"
+    "src/Include/PopulationFactory.h"
+    "src/Include/NoEvent.h"
+    "src/Include/PlagueEvent.h"
+    "src/Include/RiotsEvent.h"
+    "src/Include/Farm.h"
+    "src/Include/Sawmill.h"
+    "src/Include/Quarry.h"
+    "src/Include/Barracks.h"
+    "src/Include/Marketplace.h"
+    "src/Include/BuildingFactory.h")
+>>>>>>> origin/main
 
 target_include_directories(SymulacjaMiasto PRIVATE src/Include)

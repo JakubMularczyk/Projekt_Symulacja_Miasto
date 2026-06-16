@@ -1,4 +1,5 @@
 #include "Quarry.h"
+<<<<<<< HEAD
 #include "ResourceManager.h"
 #include <iostream>
 
@@ -16,3 +17,22 @@ void Quarry::operate() {
 std::string Quarry::getName() const {
     return "Kamieniołom";
 }
+=======
+#include <iostream>
+
+Quarry::Quarry(ResourceManager* resourceManager, int stoneProduction)
+    : Building(100), resourceManager(resourceManager), stoneProduction(stoneProduction) {
+    constructionCost[ResourceType::WOOD] = 15;
+    constructionCost[ResourceType::STONE] = 30;
+}
+
+void Quarry::operate() {
+    if (isConstructed && resourceManager) {
+        resourceManager->addResource(ResourceType::STONE, stoneProduction);
+    }
+}
+
+std::string Quarry::getName() const {
+    return "Quarry";
+}
+>>>>>>> origin/main

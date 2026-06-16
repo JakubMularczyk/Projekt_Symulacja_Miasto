@@ -9,8 +9,12 @@ Woodcutter::Woodcutter(int happinessLevel, int age, int healthLevel, ResourceMan
 
 void Woodcutter::work() {
     if (resourceManager) {
+<<<<<<< HEAD
         int effectiveProduction = static_cast<int>(woodProduction * getProductionMultiplier());
         resourceManager->addResource(ResourceType::WOOD, effectiveProduction);
+=======
+        resourceManager->addResource(ResourceType::WOOD, scaledProduction(woodProduction));
+>>>>>>> origin/main
     }
 }
 

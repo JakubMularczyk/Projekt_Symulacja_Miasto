@@ -8,7 +8,11 @@ void Merchant::work() {
     if (resourceManager->getResourceAmount(ResourceType::FOOD) > 50) {
         int goldProduction = static_cast<int>(8 * getProductionMultiplier());
         resourceManager->consumeResource(ResourceType::FOOD, 2);
+<<<<<<< HEAD
         resourceManager->addResource(ResourceType::GOLD, goldProduction);
+=======
+        resourceManager->addResource(ResourceType::GOLD, scaledProduction(8));
+>>>>>>> origin/main
     }
 }
 
