@@ -1,5 +1,5 @@
 #include "BuildingManager.h"
-#include "Farm.h" // Wymagane, aby móc stworzyć nową Farmę co 10 tur
+#include "Farm.h" 
 #include <utility>
 #include <iostream>
 
@@ -15,19 +15,19 @@ void BuildingManager::operateAll() {
 
 void BuildingManager::handleExpansion(int currentTurn, ResourceManager& resourceManager) {
     if (currentTurn > 0 && currentTurn % 10 == 0) {
-        // 1. Tworzymy instancję nowej farmy
-        auto newFarm = std::make_unique<Farm>(&resourceManager, 15);
 
+        auto newFarm = std::make_unique<Farm>(&resourceManager, 15);
+        
         if (newFarm->build(&resourceManager)) {
             
             addBuilding(std::move(newFarm));
             
-            std::cout << ">>> AUTOMATYCZNA ROZBUDOWA: Tura " << currentTurn 
-                      << ". Pomyslnie zainwestowano surowce i wzniesiono nowa Farme! <<<" << std::endl;
+            std::cout << ">>> AUTOMATIC EXPANSION: Turn " << currentTurn 
+                      << ". Resources successfully invested. A new Farm has been built! <<<" << std::endl;
         } 
         else {
-            std::cout << ">>> AUTOMATYCZNA ROZBUDOWA: Anulowano w turze " << currentTurn 
-                      << " z powodu braku surowcow w magazynie. <<<" << std::endl;
+            std::cout << ">>> AUTOMATIC EXPANSION: Canceled in turn " << currentTurn 
+                      << " due to insufficient resources in the warehouse. <<<" << std::endl;
         }
     }
 }
