@@ -53,7 +53,7 @@ void PopulationManager::handleMigration(int currentTurn, ResourceManager& resour
         if (foodPerCitizen >= 5) {
             // nowy obywatel
             addCitizen(std::make_unique<Farmer>(40, 30, 100, &resourceManager, 10, 2));
-            std::cout << ">>> MIGRACJA: Ze wzgledu na dobrobyt, nowy mieszkaniec (Farmer) dolaczyl do miasta! <<<" << std::endl;
+            std::cout << ">>> MIGRATION: Due to prosperity, a new citizen (Farmer) has joined the city! <<<" << std::endl;
         }
     }
 }
