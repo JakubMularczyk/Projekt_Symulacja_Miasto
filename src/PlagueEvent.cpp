@@ -16,18 +16,19 @@ void PlagueEvent::execute(City& city, ResourceManager& resourceManager) {
 
 
 	std::cout << "Random Event: " << getName() << " --->" << getDescription() << std::endl;
-	const int safetyLoss = 15;
-	if (city.getSafety() < safetyLoss) {
-		int safetyLossLower = city.getSafety();
-		city.changeSafety(-safetyLossLower);
-		logMessage("[RANDOMEVENT]  Safety decreased by " + std::to_string(safetyLossLower) + ".");
+	const int safetyLoss = 20;
+	const double foodLossRatio = 0.3;
 
-	}
-	else
-	{
+	if (city.getSafety() < safetyLoss) {
+		city.changeSafety(-city.getSafety());
+	} else {
 		city.changeSafety(-safetyLoss);
-		logMessage("[RANDOMEVENT]  Safety decreased by " + std::to_string(safetyLoss) + ".");
 	}
+	logMessage("[RANDOMEVENT] Plague decreased safety by " + std::to_string(safetyLoss) + ".");
+
+	int foodLoss = std::round(resourceManager.getResourceAmount(ResourceType::FOOD) * foodLossRatio);
+	resourceManager.consumeResource(ResourceType::FOOD, foodLoss);
+	logMessage("[RANDOMEVENT] Plague destroyed " + std::to_string(foodLoss) + " FOOD.");
 
 
 };

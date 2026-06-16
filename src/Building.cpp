@@ -12,7 +12,7 @@ bool Building::build(ResourceManager* resourceManager) {
 
     for (const auto& cost : constructionCost) {
         if (resourceManager->getResourceAmount(cost.first) < cost.second) {
-            std::cout << "Brakuje surowcow do budowy: " << getName() << std::endl;
+            std::cout << "Not enough resources to build: " << getName() << std::endl;
             return false;
         }
     }
@@ -23,7 +23,7 @@ bool Building::build(ResourceManager* resourceManager) {
 
     durability = maxDurability;
     isConstructed = true;
-    std::cout << "Zbudowano: " << getName() << std::endl;
+    std::cout << "Built: " << getName() << std::endl;
     return true;
 }
 

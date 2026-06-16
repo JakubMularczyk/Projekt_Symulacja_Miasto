@@ -7,8 +7,8 @@
 #include "Logger.h"
 #include "Include/PopulationManager.h"
 #include "Include/BuildingFactory.h"
-#define CONSUMPTION_FOOD 10
-#define CONSUMPTION_GOLD 5
+#define CONSUMPTION_FOOD 25
+#define CONSUMPTION_GOLD 18
 
 std::string Engine::trim(const std::string& str) {
     size_t first = str.find_first_not_of(" \t\r\n");
@@ -67,8 +67,8 @@ bool Engine::loadConfig(const std::string& filePath) {
 
 Engine::Engine() : currentTurn(0), isSimulationRunning(false) {
     if (!loadConfig("config.txt")) {
-        resourceManager.addResource(ResourceType::FOOD, 60);
-        resourceManager.addResource(ResourceType::GOLD, 30);
+        resourceManager.addResource(ResourceType::FOOD, 150);
+        resourceManager.addResource(ResourceType::GOLD, 120);
         resourceManager.addResource(ResourceType::WOOD, 100);
         resourceManager.addResource(ResourceType::STONE, 50);
     }
@@ -123,6 +123,7 @@ void Engine::executeTurn() {
     city.getBuildingManager().operateAll();
     city.getPopulationManager().updateAllHappiness(resourceManager, city.getSafety());
 
+    resourceManager.consumeResource(ResourceType::FOOD, CONSUMPTION_FOOD);
     resourceManager.consumeResource(ResourceType::GOLD, CONSUMPTION_GOLD);
 
     if (currentTurn > 5) {
