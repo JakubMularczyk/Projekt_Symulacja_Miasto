@@ -1,6 +1,7 @@
 #include "BuildingManager.h"
-#include "Building.h"
-#include "ResourceManager.h"
+#include "Farm.h" // Wymagane, aby móc stworzyć nową Farmę co 10 tur
+#include <utility>
+#include <iostream>
 
 void BuildingManager::addBuilding(std::unique_ptr<Building> building) {
     buildings.push_back(std::move(building));
@@ -8,18 +9,25 @@ void BuildingManager::addBuilding(std::unique_ptr<Building> building) {
 
 void BuildingManager::operateAll() {
     for (auto& building : buildings) {
-        if (building->getIsConstructed()) {
-            building->operate();
+        building->operate();
+    }
+}
+
+void BuildingManager::handleExpansion(int currentTurn, ResourceManager& resourceManager) {
+    if (currentTurn > 0 && currentTurn % 10 == 0) {
+        // 1. Tworzymy instancję nowej farmy
+        auto newFarm = std::make_unique<Farm>(&resourceManager, 15);
+
+        if (newFarm->build(&resourceManager)) {
+            
+            addBuilding(std::move(newFarm));
+            
+            std::cout << ">>> AUTOMATYCZNA ROZBUDOWA: Tura " << currentTurn 
+                      << ". Pomyslnie zainwestowano surowce i wzniesiono nowa Farme! <<<" << std::endl;
+        } 
+        else {
+            std::cout << ">>> AUTOMATYCZNA ROZBUDOWA: Anulowano w turze " << currentTurn 
+                      << " z powodu braku surowcow w magazynie. <<<" << std::endl;
         }
     }
-}
-
-void BuildingManager::buildAll(ResourceManager* resourceManager) {
-    for (auto& building : buildings) {
-        building->build(resourceManager);
-    }
-}
-
-int BuildingManager::getBuildingCount() const {
-    return buildings.size();
 }
