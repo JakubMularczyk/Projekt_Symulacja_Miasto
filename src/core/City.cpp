@@ -46,27 +46,24 @@ bool City::checkCollapseConditions() {
 
     if (turnsWithoutFood >= 3) {
         std::cout << "\n======================================================\n";
-        std::cout << " [KONIEC GRY] MIASTO UPADLO!\n";
-        std::cout << " Przyczyna: Brak zywnosci przez 3 tury z rzedu.\n";
-        std::cout << " Mieszkancy zmarli z glodu lub opuscili miasto w poszukiwaniu jedzenia.\n";
+        std::cout << " GAME OVER\n";
+        std::cout << " NOT ENOUGH FOOD.\n";
         std::cout << "======================================================\n";
         return true;
     }
 
     if (turnsWithoutGold >= 3) {
         std::cout << "\n======================================================\n";
-        std::cout << " [KONIEC GRY] MIASTO UPADLO!\n";
-        std::cout << " Przyczyna: Brak zlota przez 3 tury z rzedu.\n";
-        std::cout << " Skarb miasta swieci pustkami, a gospodarka calkowicie runela.\n";
+        std::cout << " GAME OVER\n";
+        std::cout << " NOT ENOUGH GOLD\n";
         std::cout << "======================================================\n";
         return true;
     }
 
     if (turnsWithoutSafety >= 3) {
         std::cout << "\n======================================================\n";
-        std::cout << " [KONIEC GRY] MIASTO UPADLO!\n";
-        std::cout << " Przyczyna: Brak bezpieczenstwa przez 3 tury z rzedu.\n";
-        std::cout << " Miasto zostalo opanowane przez bandytow i ogarniete przez anarchie.\n";
+        std::cout << " GAME OVER\n";
+        std::cout << " IT AINT SAFE\n";
         std::cout << "======================================================\n";
         return true;
     }
