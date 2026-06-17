@@ -1,12 +1,12 @@
 #include "Engine.h"
 #include <iostream>
-#include "Include/PopulationFactory.h"
+#include "PopulationFactory.h"
 #include <memory>
 #include <fstream>
 #include <sstream>
 #include "Logger.h"
-#include "Include/PopulationManager.h"
-#include "Include/BuildingFactory.h"
+#include "PopulationManager.h"
+#include "BuildingFactory.h"
 #define CONSUMPTION_FOOD 25
 #define CONSUMPTION_GOLD 18
 

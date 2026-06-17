@@ -5,33 +5,39 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(SymulacjaMiasto
-    src/main.cpp
-    src/Building.cpp
-    src/BuildingManager.cpp
-    src/BuildingFactory.cpp
-    src/Farm.cpp
-    src/Sawmill.cpp
-    src/Quarry.cpp
-    src/Barracks.cpp
-    src/Marketplace.cpp
-    src/Citizen.cpp
-    src/City.cpp
-    src/Engine.cpp
-    src/Farmer.cpp
-    src/Merchant.cpp
-    src/Guard.cpp
-    src/ResourceManager.cpp
-    src/Woodcutter.cpp
-    src/Stonecutter.cpp
-    src/RandomEvent.cpp
-    src/FireEvent.cpp
-    src/DroughtEvent.cpp
-    src/BanditAttackEvent.cpp
-    src/RandomEventManager.cpp
-    src/PopulationManager.cpp
-    src/PopulationFactory.cpp
-    src/NoEvent.cpp
-    src/PlagueEvent.cpp
-    src/RiotsEvent.cpp)
+ src/main.cpp
+
+    src/core/City.cpp
+    src/core/Engine.cpp
+
+    src/buildings/Building.cpp
+    src/buildings/Farm.cpp
+    src/buildings/Sawmill.cpp
+    src/buildings/Quarry.cpp
+    src/buildings/Barracks.cpp
+    src/buildings/Marketplace.cpp
+
+    src/population/Citizen.cpp
+    src/population/Farmer.cpp
+    src/population/Merchant.cpp
+    src/population/Guard.cpp
+    src/population/Woodcutter.cpp
+    src/population/Stonecutter.cpp
+
+    src/events/RandomEvent.cpp
+    src/events/FireEvent.cpp
+    src/events/DroughtEvent.cpp
+    src/events/BanditAttackEvent.cpp
+    src/events/NoEvent.cpp
+    src/events/PlagueEvent.cpp
+    src/events/RiotsEvent.cpp
+
+    src/managers/BuildingManager.cpp
+    src/managers/PopulationManager.cpp
+    src/managers/ResourceManager.cpp
+    src/managers/RandomEventManager.cpp
+
+    src/factories/BuildingFactory.cpp
+    src/factories/PopulationFactory.cpp)
 
 target_include_directories(SymulacjaMiasto PRIVATE src/Include)
