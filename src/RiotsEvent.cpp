@@ -16,7 +16,7 @@ void RiotsEvent::execute(City& city, ResourceManager& resourceManager) {
 
 
 	std::cout << "Random Event: " << getName() << " --->" << getDescription() << std::endl;
-	const double goldLossRatio = 0.3;
+	const double goldLossRatio = 0.125;
 	const int safetyLoss = 25;
 	if (resourceManager.getResourceAmount(ResourceType::GOLD) < 50) {
 		int goldLoss = resourceManager.getResourceAmount(ResourceType::GOLD);

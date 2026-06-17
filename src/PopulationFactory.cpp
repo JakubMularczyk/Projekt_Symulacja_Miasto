@@ -14,7 +14,7 @@
 #define FARMER_CONSUMPTION 1
 
 #define MERCHANT_PROD_LOW 2
-#define MERCHANT_PROD_HIGH 6
+#define MERCHANT_PROD_HIGH 2
 
 #define WOODCUTTER_PRODUCTION 6
 #define STONECUTTER_PRODUCTION 6
@@ -31,7 +31,7 @@ void PopulationFactory::createStartingPopulation(City& city, ResourceManager& re
 	city.getPopulationManager().addCitizen(std::make_unique<Farmer>(HAPPINESS_LEVEL, AGE, HEALTH_LEVEL, &resourceManager, FARMER_PRODUCTION, FARMER_CONSUMPTION));
 	city.getPopulationManager().addCitizen(std::make_unique<Farmer>(HAPPINESS_LEVEL, AGE, HEALTH_LEVEL, &resourceManager, FARMER_PRODUCTION, FARMER_CONSUMPTION));
 	//Merchant
-	city.getPopulationManager().addCitizen(std::make_unique<Merchant>(HAPPINESS_LEVEL, AGE, HEALTH_LEVEL, &resourceManager, MERCHANT_PROD_LOW));
+	city.getPopulationManager().addCitizen(std::make_unique<Merchant>(HAPPINESS_LEVEL, AGE, HEALTH_LEVEL, &resourceManager, MERCHANT_PROD_LOW ));
 	city.getPopulationManager().addCitizen(std::make_unique<Merchant>(HAPPINESS_LEVEL, AGE, HEALTH_LEVEL, &resourceManager, MERCHANT_PROD_HIGH));
 	//Woodcutters
 	city.getPopulationManager().addCitizen(std::make_unique<Woodcutter>(HAPPINESS_LEVEL, AGE, HEALTH_LEVEL, &resourceManager, WOODCUTTER_PRODUCTION));

@@ -12,7 +12,7 @@ FireEvent::FireEvent()
 }
 
 void FireEvent::execute(City& city, ResourceManager& resourceManager) {
-	const double woodLossRatio = 0.5;
+	const double woodLossRatio = 0.3;
 	const int safetyLoss = 25;
 	
 	std::cout << "Random Event: " << getName() << " --->" << getDescription() << std::endl;

@@ -16,8 +16,8 @@ void PlagueEvent::execute(City& city, ResourceManager& resourceManager) {
 
 
 	std::cout << "Random Event: " << getName() << " --->" << getDescription() << std::endl;
-	const int safetyLoss = 20;
-	const double foodLossRatio = 0.3;
+	const int safetyLoss = 15;
+	const double foodLossRatio = 0.2;
 
 	if (city.getSafety() < safetyLoss) {
 		city.changeSafety(-city.getSafety());

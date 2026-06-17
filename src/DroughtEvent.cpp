@@ -12,7 +12,7 @@ DroughtEvent::DroughtEvent()
 }
 
 void DroughtEvent::execute(City& city, ResourceManager& resourceManager) {
-	const double foodLossRatio = 0.5;
+	const double foodLossRatio = 0.4;
 	
 
 	std::cout << "Random Event: " << getName() << " --->" << getDescription() << std::endl;

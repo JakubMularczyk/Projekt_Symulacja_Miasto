@@ -25,6 +25,8 @@ RandomEventManager::RandomEventManager(unsigned int seed):rng_engine(seed) {
     addEvent(std::make_unique<NoEvent>());
     addEvent(std::make_unique<PlagueEvent>());
     addEvent(std::make_unique<RiotsEvent>());
+    addEvent(std::make_unique<NoEvent>());
+    addEvent(std::make_unique<NoEvent>());
   
 }
 void RandomEventManager::addEvent(std::unique_ptr<RandomEvent> event) {
