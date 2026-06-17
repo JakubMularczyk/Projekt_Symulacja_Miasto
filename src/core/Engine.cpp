@@ -154,7 +154,7 @@ void Engine::executeTurn() {
 
     displayReport();
 
-    logMessage(" [STAN MAGAZYNU] FOOD: " + std::to_string(resourceManager.getResourceAmount(ResourceType::FOOD))
+    logMessage(" [RESOURCES STATUS] FOOD: " + std::to_string(resourceManager.getResourceAmount(ResourceType::FOOD))
         + " | GOLD: " + std::to_string(resourceManager.getResourceAmount(ResourceType::GOLD))
         + " | WOOD: " + std::to_string(resourceManager.getResourceAmount(ResourceType::WOOD))
         + " | STONE: " + std::to_string(resourceManager.getResourceAmount(ResourceType::STONE))
