@@ -33,7 +33,7 @@ void Building::takeDamage(int amount) {
         if (durability <= 0) {
             durability = 0;
             isConstructed = false;
-            std::cout << getName() << " zostal zniszczony!" << std::endl;
+            std::cout << getName() << " DESTROYED!" << std::endl;
         }
     }
 }
