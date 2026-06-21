@@ -4,6 +4,7 @@
 #include <memory>
 #include <fstream>
 #include <sstream>
+#include <string>
 #include "Logger.h"
 #include "PopulationManager.h"
 #include "BuildingFactory.h"
@@ -90,26 +91,63 @@ void Engine::run() {
     }
 }
 
-void Engine::showMenu() {
-    std::cout << "\n[1] Next turn | [2] End simulation\nChoice: ";
-    int choice;
 
+void Engine::showMenu() {
+    static bool isFirstTime = true;
+
+    if (isFirstTime) {
+        std::cout << "\n==============================================================\n";
+        std::cout << "                   CITY SIMULATOR ENGINE                      \n";
+        std::cout << "==============================================================\n";
+        std::cout << " Welcome! As the unseen manager of a growing settlement,      \n";
+        std::cout << " your goal is to gather resources, expand infrastructure,     \n";
+        std::cout << " manage citizens, and survive unexpected random events.       \n";
+        std::cout << "==============================================================\n";
+        std::cout << "[0] Show logs | [1] Start simulation | [2] Exit simulation\nChoice: ";
+    } else {
+        std::cout << "\n[0] Show logs | [1] Next turn | [2] End simulation\nChoice: ";
+    }
+
+    int choice;
     if (!(std::cin >> choice)) {
         std::cin.clear();
         std::cin.ignore(10000, '\n');
-        std::cout << "Please enter a number!" << std::endl;
+        std::cout << "Please enter a valid number!" << std::endl;
         return;
     }
 
-    if (choice == 1) {
+    if (choice == 0) {
+        std::ifstream logFile("simulation_logs.txt");
+        if (logFile.is_open()) {
+            std::cout << "\n--- CURRENT SIMULATION LOGS ---\n";
+            std::string line;
+            while (std::getline(logFile, line)) {
+                std::cout << line << "\n";
+            }
+            std::cout << "-------------------------------\n";
+            logFile.close();
+        } else {
+            std::cout << "\n[INFO] Logs are currently empty or file cannot be opened.\n";
+        }
+    
+    }
+    else if (choice == 1) {
+        if (isFirstTime) {
+            std::cout << "\n>>> Preparing the city... Simulation started! <<<\n";
+            isFirstTime = false;
+        }
         executeTurn();
     }
     else if (choice == 2) {
         isSimulationRunning = false;
-        std::cout << "Simulation ended by user." << std::endl;
+        if (isFirstTime) {
+            std::cout << "Simulation exited before starting." << std::endl;
+        } else {
+            std::cout << "Simulation ended by user." << std::endl;
+        }
     }
     else {
-        std::cout << "Invalid choice!" << std::endl;
+        std::cout << "Invalid choice! Please select 0, 1, or 2." << std::endl;
     }
 }
 
