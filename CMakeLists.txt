@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(SymulacjaMiasto
- src/main.cpp
+    src/main.cpp
 
     src/core/City.cpp
     src/core/Engine.cpp
@@ -41,3 +41,5 @@ add_executable(SymulacjaMiasto
     src/factories/PopulationFactory.cpp)
 
 target_include_directories(SymulacjaMiasto PRIVATE src/Include)
+
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/config.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
