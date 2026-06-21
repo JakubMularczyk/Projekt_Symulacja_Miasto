@@ -4,9 +4,7 @@ project(SymulacjaMiasto CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(SymulacjaMiasto
-    src/main.cpp
-
+set(PROJEKT_SOURCES
     src/core/City.cpp
     src/core/Engine.cpp
 
@@ -40,6 +38,31 @@ add_executable(SymulacjaMiasto
     src/factories/BuildingFactory.cpp
     src/factories/PopulationFactory.cpp)
 
+add_executable(SymulacjaMiasto src/main.cpp ${PROJEKT_SOURCES})
 target_include_directories(SymulacjaMiasto PRIVATE src/Include)
-
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/config.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
+# Testy
+include(FetchContent)
+FetchContent_Declare(
+    googletest
+    URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
+)
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
+enable_testing()
+
+add_executable(SymulacjaMiastoTesty
+    tests/ResourceManagerTest.cpp
+    tests/CitizenTest.cpp
+    tests/PopulationManagerTest.cpp
+    tests/CityTest.cpp
+    tests/EventsTest.cpp
+    ${PROJEKT_SOURCES})
+
+target_include_directories(SymulacjaMiastoTesty PRIVATE src/Include)
+target_link_libraries(SymulacjaMiastoTesty GTest::gtest_main)
+
+include(GoogleTest)
+gtest_discover_tests(SymulacjaMiastoTesty)
