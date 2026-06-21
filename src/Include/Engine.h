@@ -13,7 +13,8 @@ private:
     int currentTurn;
     bool isSimulationRunning;
 
-    void executeTurn();
+    void executeTurn(bool silent = false);
+    
     void displayReport() const;
     void showMenu();
 

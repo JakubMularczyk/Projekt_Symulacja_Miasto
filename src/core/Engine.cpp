@@ -91,7 +91,6 @@ void Engine::run() {
     }
 }
 
-
 void Engine::showMenu() {
     static bool isFirstTime = true;
 
@@ -103,9 +102,11 @@ void Engine::showMenu() {
         std::cout << " your goal is to gather resources, expand infrastructure,     \n";
         std::cout << " manage citizens, and survive unexpected random events.       \n";
         std::cout << "==============================================================\n";
-        std::cout << "[0] Show logs | [1] Start simulation | [2] Exit simulation\nChoice: ";
+        std::cout << "[0] Show logs | [1] Start simulation | [2] Exit simulation\n";
+        std::cout << "[3] Fast-forward X turns\nChoice: ";
     } else {
-        std::cout << "\n[0] Show logs | [1] Next turn | [2] End simulation\nChoice: ";
+        std::cout << "\n[0] Show logs | [1] Next turn | [2] End simulation\n";
+        std::cout << "[3] Fast-forward X turns\nChoice: ";
     }
 
     int choice;
@@ -129,14 +130,13 @@ void Engine::showMenu() {
         } else {
             std::cout << "\n[INFO] Logs are currently empty or file cannot be opened.\n";
         }
-    
     }
     else if (choice == 1) {
         if (isFirstTime) {
             std::cout << "\n>>> Preparing the city... Simulation started! <<<\n";
             isFirstTime = false;
         }
-        executeTurn();
+        executeTurn(); 
     }
     else if (choice == 2) {
         isSimulationRunning = false;
@@ -146,14 +146,42 @@ void Engine::showMenu() {
             std::cout << "Simulation ended by user." << std::endl;
         }
     }
+    else if (choice == 3) {
+        int turnsToSkip;
+        std::cout << "\nEnter how many turns to simulate automatically: ";
+        
+        if (!(std::cin >> turnsToSkip) || turnsToSkip <= 0) {
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+            std::cout << "[ERROR] Invalid input! Please enter a positive number.\n";
+        } else {
+            if (isFirstTime) {
+                std::cout << "\n>>> Preparing the city... Simulation started! <<<\n";
+                isFirstTime = false;
+            }
+            
+            std::cout << "\n>>> Fast-forwarding " << turnsToSkip << " turns... <<<\n";
+            
+            for (int i = 0; i < turnsToSkip; ++i) {
+                if (!isSimulationRunning) break; 
+                
+                bool isSilent = (i < turnsToSkip - 1); 
+                executeTurn(isSilent);
+            }
+        }
+    }
     else {
-        std::cout << "Invalid choice! Please select 0, 1, or 2." << std::endl;
+        std::cout << "Invalid choice! Please select 0, 1, 2, or 3." << std::endl;
     }
 }
 
-void Engine::executeTurn() {
+
+void Engine::executeTurn(bool silent) {
     currentTurn++;
-    std::cout << "\n--- START OF TURN " << currentTurn << " ---" << std::endl;
+    
+    if (!silent) {
+        std::cout << "\n--- START OF TURN " << currentTurn << " ---" << std::endl;
+    }
 
     logMessage("\n--- START OF TURN " + std::to_string(currentTurn) + " ---");
 
@@ -174,7 +202,7 @@ void Engine::executeTurn() {
     city.updateTurnsToCollapse(resourceManager);
 
     if (city.checkCollapseConditions()) {
-        displayReport();
+        displayReport(); 
 
         logMessage("=========================================");
         logMessage("             THE CITY COLLAPSED!         ");
@@ -190,7 +218,9 @@ void Engine::executeTurn() {
         return;
     }
 
-    displayReport();
+    if (!silent) {
+        displayReport();
+    }
 
     logMessage(" [RESOURCES STATUS] FOOD: " + std::to_string(resourceManager.getResourceAmount(ResourceType::FOOD))
         + " | GOLD: " + std::to_string(resourceManager.getResourceAmount(ResourceType::GOLD))
