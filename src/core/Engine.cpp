@@ -4,6 +4,7 @@
 #include <memory>
 #include <fstream>
 #include <sstream>
+#include <string>
 #include "Logger.h"
 #include "PopulationManager.h"
 #include "BuildingFactory.h"
@@ -90,6 +91,7 @@ void Engine::run() {
     }
 }
 
+
 void Engine::showMenu() {
     static bool isFirstTime = true;
 
@@ -101,9 +103,9 @@ void Engine::showMenu() {
         std::cout << " your goal is to gather resources, expand infrastructure,     \n";
         std::cout << " manage citizens, and survive unexpected random events.       \n";
         std::cout << "==============================================================\n";
-        std::cout << "[1] Start simulation | [2] Exit simulation\nChoice: ";
+        std::cout << "[0] Show logs | [1] Start simulation | [2] Exit simulation\nChoice: ";
     } else {
-        std::cout << "\n[1] Next turn | [2] End simulation\nChoice: ";
+        std::cout << "\n[0] Show logs | [1] Next turn | [2] End simulation\nChoice: ";
     }
 
     int choice;
@@ -114,10 +116,25 @@ void Engine::showMenu() {
         return;
     }
 
-    if (choice == 1) {
+    if (choice == 0) {
+        std::ifstream logFile("simulation_logs.txt");
+        if (logFile.is_open()) {
+            std::cout << "\n--- CURRENT SIMULATION LOGS ---\n";
+            std::string line;
+            while (std::getline(logFile, line)) {
+                std::cout << line << "\n";
+            }
+            std::cout << "-------------------------------\n";
+            logFile.close();
+        } else {
+            std::cout << "\n[INFO] Logs are currently empty or file cannot be opened.\n";
+        }
+    
+    }
+    else if (choice == 1) {
         if (isFirstTime) {
             std::cout << "\n>>> Preparing the city... Simulation started! <<<\n";
-            isFirstTime = false; 
+            isFirstTime = false;
         }
         executeTurn();
     }
@@ -130,7 +147,7 @@ void Engine::showMenu() {
         }
     }
     else {
-        std::cout << "Invalid choice! Please select 1 or 2." << std::endl;
+        std::cout << "Invalid choice! Please select 0, 1, or 2." << std::endl;
     }
 }
 
