@@ -8,8 +8,6 @@ NoEvent::NoEvent()
 }
 
 void NoEvent::execute(City& city, ResourceManager& resourceManager) {
-
-	std::cout << "Random Event: " << getName() << " --->" << getDescription() << std::endl;
 	logMessage("[RANDOMEVENT] nothing happened");
 
 };
