@@ -3,8 +3,8 @@
 #include <iostream>
 #include <algorithm>
 
-Citizen::Citizen(int happinessLevel, int age, int healthLevel)
-    : happinessLevel(happinessLevel), age(age), healthLevel(healthLevel) {
+Citizen::Citizen(int happinessLevel)
+    : happinessLevel(happinessLevel) {
 }
 
 void Citizen::work() {}

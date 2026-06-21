@@ -1,7 +1,7 @@
 #include "Farmer.h"
 
-Farmer::Farmer(int happinessLevel, int age, int healthLevel, ResourceManager* resourceManager, int foodProduction, int foodConsumption)
-    : Citizen(happinessLevel, age, healthLevel), resourceManager(resourceManager), foodProduction(foodProduction), foodConsumption(foodConsumption) {
+Farmer::Farmer(int happinessLevel, ResourceManager* resourceManager, int foodProduction, int foodConsumption)
+    : Citizen(happinessLevel), resourceManager(resourceManager), foodProduction(foodProduction), foodConsumption(foodConsumption) {
 }
 
 void Farmer::work() {

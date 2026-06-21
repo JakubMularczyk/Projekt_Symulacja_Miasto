@@ -3,13 +3,11 @@
 class Citizen {
 protected:
     int happinessLevel;
-    int age;
-    int healthLevel;
 
     int scaledProduction(int baseProduction) const;
 
 public:
-    Citizen(int happinessLevel = 0, int age = 0, int healthLevel = 0);
+    Citizen(int happinessLevel = 0);
 
     virtual ~Citizen() = default;
 
