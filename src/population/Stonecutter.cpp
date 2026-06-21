@@ -1,7 +1,7 @@
 #include "Stonecutter.h"
 
-Stonecutter::Stonecutter(int happinessLevel, int age, int healthLevel, ResourceManager* resourceManager, int stoneProduction, int foodConsumption)
-    : Citizen(happinessLevel, age, healthLevel),
+Stonecutter::Stonecutter(int happinessLevel, ResourceManager* resourceManager, int stoneProduction, int foodConsumption)
+    : Citizen(happinessLevel),
       resourceManager(resourceManager),
       stoneProduction(stoneProduction),
       foodConsumption(foodConsumption) {
@@ -17,7 +17,6 @@ void Stonecutter::consume() {
     if (resourceManager) {
         if (!resourceManager->consumeResource(ResourceType::FOOD, foodConsumption)) {
             happinessLevel -= 10;
-            healthLevel -= 5;
         }
     }
 }

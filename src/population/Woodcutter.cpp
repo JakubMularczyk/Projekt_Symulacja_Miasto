@@ -1,7 +1,7 @@
 #include "Woodcutter.h"
 
-Woodcutter::Woodcutter(int happinessLevel, int age, int healthLevel, ResourceManager* resourceManager, int woodProduction, int foodConsumption)
-    : Citizen(happinessLevel, age, healthLevel),
+Woodcutter::Woodcutter(int happinessLevel, ResourceManager* resourceManager, int woodProduction, int foodConsumption)
+    : Citizen(happinessLevel),
       resourceManager(resourceManager),
       woodProduction(woodProduction),
       foodConsumption(foodConsumption) {
