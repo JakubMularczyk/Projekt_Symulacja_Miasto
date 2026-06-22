@@ -2,8 +2,12 @@
 #include "Citizen.h"
 #include "ResourceManager.h"
 #include "Farmer.h"
+#include "Merchant.h"
+#include "Stonecutter.h"
+#include "Woodcutter.h"
 #include <utility>
 #include <iostream>
+#include <cstdlib>     
 
 void PopulationManager::addCitizen(std::unique_ptr<Citizen> citizen) {
     population.push_back(std::move(citizen));
@@ -51,9 +55,43 @@ void PopulationManager::handleMigration(int currentTurn, ResourceManager& resour
         int foodPerCitizen = resourceManager.getResourceAmount(ResourceType::FOOD) / currentPopulation;
 
         if (foodPerCitizen >= 5) {
-            // nowy obywatel
-            addCitizen(std::make_unique<Farmer>(40, &resourceManager, 10, 2));
-            std::cout << ">>> MIGRATION: Due to prosperity, a new citizen (Farmer) has joined the city! <<<" << std::endl;
+            
+            std::unique_ptr<Citizen> newCitizen = nullptr;
+            std::string citizenType = "";
+
+            int randomChoice = std::rand() % 5;
+
+            switch (randomChoice) {
+                case 0:
+                    newCitizen = std::make_unique<Farmer>(40, &resourceManager, 10, 2);
+                    citizenType = "Farmer";
+                    break;
+                case 1:
+                    newCitizen = std::make_unique<Guard>(45, &resourceManager, 12, 4);
+                    citizenType = "Guard";
+                    break;
+                case 2:
+                    newCitizen = std::make_unique<Merchant>(42, &resourceManager, 8, 3);
+                    citizenType = "Merchant";
+                    break;
+                case 3:
+                    newCitizen = std::make_unique<Stonecutter>(38, &resourceManager, 15, 1);
+                    citizenType = "Stonecutter";
+                    break;
+                case 4:
+                    newCitizen = std::make_unique<Woodcutter>(35, &resourceManager, 11, 2);
+                    citizenType = "Woodcutter";
+                    break;
+                default:
+                    newCitizen = std::make_unique<Farmer>(40, &resourceManager, 10, 2);
+                    citizenType = "Farmer";
+                    break;
+            }
+
+            if (newCitizen) {
+                addCitizen(std::move(newCitizen));
+                std::cout << ">>> MIGRATION: Due to prosperity, a new citizen (" << citizenType << ") has joined the city! <<<" << std::endl;
+            }
         }
     }
 }
