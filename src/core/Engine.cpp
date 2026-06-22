@@ -67,12 +67,16 @@ bool Engine::loadConfig(const std::string& filePath) {
 }
 
 Engine::Engine() : currentTurn(0), isSimulationRunning(false) {
-    if (!loadConfig("config.txt")) {
+   /* if (!loadConfig("config.txt")) {
         resourceManager.addResource(ResourceType::FOOD, 1500);
         resourceManager.addResource(ResourceType::GOLD, 1200);
         resourceManager.addResource(ResourceType::WOOD, 1000);
         resourceManager.addResource(ResourceType::STONE, 500);
-    }
+    }*/
+resourceManager.addResource(ResourceType::FOOD, 1500);
+resourceManager.addResource(ResourceType::GOLD, 1200);
+resourceManager.addResource(ResourceType::WOOD, 1000);
+resourceManager.addResource(ResourceType::STONE, 500);
 
     PopulationFactory populaationFactory;
     populaationFactory.createStartingPopulation(city, resourceManager);
@@ -188,8 +192,8 @@ void Engine::executeTurn(bool silent) {
     city.getPopulationManager().executeCitizenActions();
     city.getBuildingManager().operateAll();
     city.getPopulationManager().updateAllHappiness(resourceManager, city.getSafety());
-    city.getPopulationManager().handleMigration(currentTurn, resourceManager);
-    city.getBuildingManager().handleExpansion(currentTurn, resourceManager);
+    city.getPopulationManager().handleMigration(currentTurn, resourceManager, city);
+    city.getBuildingManager().handleExpansion(currentTurn, resourceManager, city);
     resourceManager.consumeResource(ResourceType::FOOD, CONSUMPTION_FOOD);
     resourceManager.consumeResource(ResourceType::GOLD, CONSUMPTION_GOLD);
 

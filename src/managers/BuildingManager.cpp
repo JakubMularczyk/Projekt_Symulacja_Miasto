@@ -18,7 +18,7 @@ void BuildingManager::operateAll() {
     }
 }
 
-void BuildingManager::handleExpansion(int currentTurn, ResourceManager& resourceManager) {
+void BuildingManager::handleExpansion(int currentTurn, ResourceManager& resourceManager, City& city) {
     if (currentTurn > 0 && currentTurn % 10 == 0) {
 
         std::unique_ptr<Building> newBuilding = nullptr;
@@ -32,7 +32,7 @@ void BuildingManager::handleExpansion(int currentTurn, ResourceManager& resource
                 buildingName = "Farm";
                 break;
             case 1:
-                newBuilding = std::make_unique<Barracks>(&resourceManager, 20);
+                newBuilding = std::make_unique<Barracks>(&city, 20);
                 buildingName = "Barracks";
                 break;
             case 2:

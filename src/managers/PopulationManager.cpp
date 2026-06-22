@@ -4,6 +4,7 @@
 #include "Farmer.h"
 #include "Merchant.h"
 #include "Stonecutter.h"
+#include "Guard.h"
 #include "Woodcutter.h"
 #include <utility>
 #include <iostream>
@@ -45,7 +46,7 @@ int PopulationManager::getPopulation() const {
     return population.size();
 }
 
-void PopulationManager::handleMigration(int currentTurn, ResourceManager& resourceManager) {
+void PopulationManager::handleMigration(int currentTurn, ResourceManager& resourceManager, City& city) {
     if (currentTurn > 0 && currentTurn % 5 == 0) {
         int currentPopulation = getPopulation();
 
@@ -67,11 +68,11 @@ void PopulationManager::handleMigration(int currentTurn, ResourceManager& resour
                     citizenType = "Farmer";
                     break;
                 case 1:
-                    newCitizen = std::make_unique<Guard>(45, &resourceManager, 12, 4);
+                    newCitizen = std::make_unique<Guard>(45, &city, &resourceManager, 12, 4);
                     citizenType = "Guard";
                     break;
                 case 2:
-                    newCitizen = std::make_unique<Merchant>(42, &resourceManager, 8, 3);
+                    newCitizen = std::make_unique<Merchant>(42, &resourceManager, 3);
                     citizenType = "Merchant";
                     break;
                 case 3:
